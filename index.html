@@ -1,0 +1,632 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Llamada n.° 237</title>
+<meta name="description" content="Llamada n.° 237: instalación sonora de Martín Fernández Navarro. 62.º Premio Nacional de Artes Visuales, Espacio de Arte Contemporáneo, Montevideo.">
+<meta name="theme-color" content="#dde1e2">
+<meta property="og:title" content="Llamada n.° 237">
+<meta property="og:description" content="Instalación sonora de Martín Fernández Navarro. Dejá tu número y alguien te llama para contarte de qué va la obra.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23b4c1a6'/%3E%3Ccircle cx='50' cy='14' r='6' fill='%23d63a25'/%3E%3Ctext x='8' y='46' font-family='Arial' font-weight='700' font-size='26' fill='%2316200e'%3E237%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@400;600&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+  :root {
+    --sans: "IBM Plex Sans Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+    --serif: "IBM Plex Serif", Charter, Georgia, serif;
+    --rojo: #d63a25;
+    --azul: #1f5f9a;
+    --foco: #f2b705;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; background: #030f1f; color-scheme: light dark; }
+  body { margin: 0; font-family: var(--serif); font-size: 1.125rem; line-height: 1.7; background: #030f1f; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  :focus-visible { outline: 3px solid var(--foco); outline-offset: 3px; }
+  .sr { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .skip { position: absolute; left: 12px; top: -60px; z-index: 50; background: #fff; color: #111; padding: .6rem 1rem; font-family: var(--sans); }
+  .skip:focus { top: 12px; }
+
+  /* ---------- capas: cada sección es una profundidad ---------- */
+  .layer { color: var(--ink); background: linear-gradient(180deg, var(--from) 0, var(--bg) 6rem); padding: clamp(7rem, 14vw, 10rem) 0 clamp(4rem, 9vw, 7rem); scroll-margin-top: 0; }
+  .l0 { --bg: #dde1e2; --from: #dde1e2; --ink: #162029; padding: 0; }
+  .l1 { --bg: #cddbe3; --from: #dde1e2; --ink: #10202b; }
+  .l2 { --bg: #a9c5d6; --from: #cddbe3; --ink: #0c1c28; }
+  .l3 { --bg: #7fa8c4; --from: #a9c5d6; --ink: #08161f; }
+  .l4 { --bg: #2f6d9a; --from: #7fa8c4; --ink: #f6fafc; }
+  .l5 { --bg: #1f5885; --from: #2f6d9a; --ink: #f2f8fb; }
+  .l6 { --bg: #123f68; --from: #1f5885; --ink: #eef6fa; }
+  .l7 { --bg: #0a2d4f; --from: #123f68; --ink: #eaf3f8; }
+  .l8 { --bg: #061d38; --from: #0a2d4f; --ink: #e8f1f6; }
+  .l9 { --bg: #030f1f; --from: #061d38; --ink: #dce8ef; padding-top: 7rem; padding-bottom: 3rem; }
+
+  .wrap { max-width: 44rem; margin: 0 auto; padding: 0 16px; }
+  .wide { max-width: 68rem; margin: 0 auto; padding: 0 16px; }
+  h2 { font-family: var(--sans); font-weight: 600; font-size: clamp(2.3rem, 6.5vw, 3.8rem); line-height: 1.04; letter-spacing: -.01em; margin: 0 0 1.6rem; }
+  h3 { font-family: var(--sans); font-weight: 600; font-size: 1.5rem; margin: 2.6rem 0 .8rem; }
+  p { margin: 0 0 1.2em; }
+  a { color: inherit; text-underline-offset: .2em; }
+  .muted { opacity: .78; }
+  .epigrafe { font-style: italic; font-size: clamp(1.3rem, 3.4vw, 1.7rem); line-height: 1.45; border-left: 3px solid var(--rojo); padding-left: 1.1rem; margin: 0 0 2.2rem; }
+
+  /* ---------- botones ---------- */
+  .btn { display: inline-flex; align-items: center; gap: .7rem; font: 600 1.15rem/1 var(--sans); padding: 1rem 1.8rem; min-height: 3.2rem; background: var(--azul); color: #fff; border: 0; border-radius: 10px; cursor: pointer; }
+  .btn:hover { background: #17507f; }
+  .btn.rojo { background: var(--rojo); }
+  .btn.rojo:hover { background: #b92e1b; }
+  .btn[disabled] { opacity: .6; cursor: wait; }
+  .btn svg { width: 1.3rem; height: 1.3rem; fill: currentColor; }
+
+  .snd { position: fixed; top: 12px; left: 12px; z-index: 40; font: 400 .95rem/1 var(--sans); background: rgba(20,30,40,.82); color: #fff; border: 0; border-radius: 8px; padding: .7rem .9rem; min-height: 2.75rem; cursor: pointer; }
+  .snd[aria-pressed="true"] { background: var(--rojo); }
+
+  /* ---------- medidor de profundidad ---------- */
+  #gauge { position: fixed; right: 10px; top: 50%; transform: translateY(-50%); height: 44vh; width: 18px; z-index: 30; pointer-events: none; }
+  #gauge .rule { position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: #fff; mix-blend-mode: difference; opacity: .7; }
+  #gauge .rule::before { content: ""; position: absolute; left: -5px; top: 0; bottom: 0; width: 12px; background: repeating-linear-gradient(180deg, #fff 0 1px, transparent 1px 10%); }
+  #gauge .mark { position: absolute; left: 0; top: 0; width: 18px; height: 3px; background: var(--rojo); }
+  #prof { position: absolute; right: 24px; top: 100%; margin-top: 10px; white-space: nowrap; font: 600 .85rem/1 var(--sans); background: rgba(10,20,30,.8); color: #fff; padding: .35rem .5rem; border-radius: 6px; }
+  @media (max-width: 700px) { #gauge { display: none; } }
+
+  /* ---------- intro: pantalla de teléfono de oficina ---------- */
+  #intro { min-height: 100svh; display: grid; place-content: center; justify-items: center; gap: 2.6rem; padding: 4rem 16px 3rem; }
+  .phone { position: relative; width: min(92vw, 46rem); background: #2a2e32; border-radius: 18px; padding: clamp(14px, 3vw, 28px); box-shadow: inset 0 1px 0 rgba(255,255,255,.18), 0 26px 40px -22px rgba(0,0,0,.55); }
+  .led { position: absolute; top: 9px; right: 16px; width: 10px; height: 10px; border-radius: 50%; background: #5a1d17; }
+  .led.on { background: #ff4b36; box-shadow: 0 0 12px 3px rgba(255,75,54,.6); }
+  .lcd { background: #b4c1a6; border-radius: 6px; box-shadow: inset 0 0 0 2px rgba(0,0,0,.22), inset 0 8px 18px rgba(0,0,0,.2); transition: background .08s; }
+  .lcd.bl { background: #c9d6bb; }
+  #lcd { display: block; width: 100%; aspect-ratio: 101 / 28.75; }
+
+  /* ---------- menú telefónico ---------- */
+  #saludo { min-height: 8.5rem; }
+  .saludo-1 { font-style: italic; font-size: clamp(1.7rem, 4.6vw, 2.5rem); line-height: 1.25; margin: 0 0 .6rem; }
+  .saludo-2 { font-size: 1.15rem; margin: 0 0 2.4rem; }
+  .ivr { list-style: none; margin: 0; padding: 0; }
+  .js .ivr:not(.on) li { opacity: 0; }
+  .ivr li { transition: opacity .5s; }
+  .ivr li:nth-child(2) { transition-delay: .12s; } .ivr li:nth-child(3) { transition-delay: .24s; } .ivr li:nth-child(4) { transition-delay: .36s; }
+  .ivr li:nth-child(5) { transition-delay: .48s; } .ivr li:nth-child(6) { transition-delay: .6s; } .ivr li:nth-child(7) { transition-delay: .72s; }
+  .ivr a { display: grid; grid-template-columns: clamp(3.6rem, 12vw, 5.6rem) 1fr; align-items: baseline; gap: 1rem; padding: .7rem 0; border-top: 1px solid rgba(16,32,43,.25); text-decoration: none; transition: transform .2s; }
+  .ivr li:last-child a { border-bottom: 1px solid rgba(16,32,43,.25); }
+  .ivr a:hover { transform: translateX(8px); }
+  .ivr .d { font: 600 clamp(2.8rem, 9vw, 4.8rem)/1 var(--sans); font-variant-numeric: tabular-nums; }
+  .ivr .t { font-size: clamp(1.15rem, 3vw, 1.4rem); line-height: 1.3; }
+  .ivr .t b { font-weight: 500; }
+
+  /* ---------- ficha ---------- */
+  dl.ficha { display: grid; grid-template-columns: 9.5rem 1fr; gap: .5rem 1.2rem; margin: 2.4rem 0 0; padding-top: 1.4rem; border-top: 1px solid rgba(12,28,40,.3); font-size: 1rem; line-height: 1.5; }
+  dl.ficha dt { font: 600 1rem/1.5 var(--sans); }
+  dl.ficha dd { margin: 0; }
+  @media (max-width: 520px) { dl.ficha { grid-template-columns: 1fr; } dl.ficha dd { margin-bottom: .6rem; } }
+
+  /* ---------- mapa ---------- */
+  #map { height: min(62vh, 36rem); border: 1px solid rgba(255,255,255,.3); background: #0d2236; }
+  .map-nota { margin-top: .8rem; font-size: .95rem; }
+  .dot { display: block; width: 14px; height: 14px; border-radius: 50%; background: var(--rojo); box-shadow: 0 0 0 0 rgba(214,58,37,.7); animation: tu 2.4s infinite; }
+  @keyframes tu { 0% { box-shadow: 0 0 0 0 rgba(214,58,37,.75); } 60%, 100% { box-shadow: 0 0 0 16px rgba(214,58,37,0); } }
+  @media (prefers-reduced-motion: reduce) { .dot { animation: none; } .ivr li, .ivr a { transition: none; } }
+  .leaflet-container { font-family: var(--sans); }
+  .leaflet-popup-content-wrapper, .leaflet-popup-tip { background: #0d2236; color: #eef6fa; }
+  .mapa-falla { padding: 2rem 1rem; }
+
+  /* ---------- archivo ---------- */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr)); gap: 18px 14px; margin: 0 0 2.4rem; padding: 0; list-style: none; }
+  .grid figure { margin: 0; }
+  .ph { position: relative; aspect-ratio: 4 / 3; border: 1px dashed rgba(255,255,255,.5); display: grid; place-items: center; text-align: center; padding: 12px; font: 400 .95rem/1.3 var(--sans); }
+  .ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .grid figcaption { font-size: .95rem; line-height: 1.4; margin-top: .45rem; }
+
+  /* ---------- escuchar ---------- */
+  audio { width: 100%; margin: .8rem 0 1rem; }
+
+  /* ---------- bitácora ---------- */
+  ol.bit { list-style: none; margin: 0; padding: 0; border-left: 2px solid rgba(255,255,255,.35); }
+  ol.bit li { display: grid; grid-template-columns: 8.2rem 1fr; gap: 1rem; padding: 0 0 1.8rem 1.2rem; position: relative; }
+  ol.bit li::before { content: ""; position: absolute; left: -7px; top: .62em; width: 12px; height: 12px; border-radius: 50%; background: var(--rojo); }
+  ol.bit time { font: 600 1.1rem/1.5 var(--sans); }
+  ol.bit p { margin: 0; }
+  @media (max-width: 560px) { ol.bit li { grid-template-columns: 1fr; gap: .2rem; } }
+
+  /* ---------- formulario ---------- */
+  form { margin-top: 2rem; }
+  label, legend { display: block; font: 600 1.1rem/1.3 var(--sans); margin: 1.6rem 0 .4rem; padding: 0; }
+  label small { font-weight: 400; opacity: .8; }
+  input[type="text"], input[type="tel"] { width: 100%; font: 400 1.3rem/1.3 var(--serif); color: #fff; background: rgba(255,255,255,.08); border: 0; border-bottom: 2px solid rgba(255,255,255,.6); padding: .8rem .8rem; min-height: 3.2rem; border-radius: 4px 4px 0 0; }
+  input::placeholder { color: rgba(255,255,255,.5); }
+  .ayuda { font-size: .95rem; margin: .4rem 0 0; opacity: .8; }
+  fieldset { border: 0; padding: 0; margin: 0; }
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: .4rem; }
+  .chip { position: relative; margin: 0; font-weight: 400; }
+  .chip input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+  .chip span { display: block; padding: .75rem 1.1rem; min-height: 2.9rem; border: 1px solid rgba(255,255,255,.55); border-radius: 8px; font: 400 1.05rem/1.3 var(--sans); }
+  .chip input:checked + span { background: #fff; color: #04152a; border-color: #fff; font-weight: 600; }
+  .chip input:focus-visible + span { outline: 3px solid var(--foco); outline-offset: 3px; }
+  .consent { display: flex; gap: .8rem; align-items: flex-start; font: 400 1rem/1.5 var(--serif); margin: 1.8rem 0 1.6rem; }
+  .consent input { width: 1.4rem; height: 1.4rem; margin-top: .2rem; flex: none; accent-color: var(--rojo); }
+  .err { color: #ffb4a8; font: 600 1rem/1.4 var(--sans); margin: .5rem 0 0; }
+  .hp { position: absolute; left: -9999px; }
+  #estado { margin-top: 1rem; font: 600 1.05rem/1.4 var(--sans); }
+  #estado.error { color: #ffb4a8; }
+  #listo { border-left: 4px solid var(--rojo); padding-left: 1.2rem; margin-top: 2rem; }
+  #listo h3 { margin-top: 0; }
+
+  footer p { font-size: .95rem; margin-bottom: .5rem; }
+  noscript p { padding: 1rem; background: #fff; color: #111; }
+</style>
+</head>
+<body>
+<a class="skip" href="#menu">Saltar la animación</a>
+<button id="snd" class="snd" type="button" aria-pressed="false">Sonido apagado</button>
+<div id="gauge" aria-hidden="true"><div class="rule"></div><div class="mark"></div><span id="prof">0,00 m</span></div>
+
+<header id="intro" class="layer l0">
+  <h1 class="sr">Llamada n.° 237</h1>
+  <div class="phone" aria-hidden="true">
+    <span id="led" class="led"></span>
+    <div id="lcdbox" class="lcd"><canvas id="lcd"></canvas></div>
+  </div>
+  <button id="atender" class="btn" type="button">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
+    Atender
+  </button>
+  <noscript><p>Esta página necesita JavaScript para la animación, el mapa y el formulario. Llamada n.° 237, instalación sonora de Martín Fernández Navarro.</p></noscript>
+</header>
+
+<main>
+<section id="menu" class="layer l1" aria-labelledby="saludo-t">
+  <div class="wide">
+    <div id="saludo">
+      <p id="saludo-t" class="saludo-1" data-type>Hola. Gracias por comunicarte con Llamada n.° 237.</p>
+      <p class="saludo-2" data-type>Su llamada es importante para nosotros. Marcá una opción.</p>
+    </div>
+    <ol class="ivr" id="ivr">
+      <li><a href="#obra" data-k="1"><span class="d">1</span><span class="t">para conocer <b>la obra</b></span></a></li>
+      <li><a href="#anecdota" data-k="2"><span class="d">2</span><span class="t">para escuchar <b>la anécdota</b></span></a></li>
+      <li><a href="#mapa" data-k="3"><span class="d">3</span><span class="t">para ver <b>dónde atienden</b> los centros de llamadas</span></a></li>
+      <li><a href="#archivo" data-k="4"><span class="d">4</span><span class="t">para mirar <b>el archivo</b></span></a></li>
+      <li><a href="#escuchar" data-k="5"><span class="d">5</span><span class="t">para <b>escuchar</b> lo que suena adentro del agua</span></a></li>
+      <li><a href="#bitacora" data-k="6"><span class="d">6</span><span class="t">para seguir <b>el proceso</b></span></a></li>
+      <li><a href="#llamame" data-k="0"><span class="d">0</span><span class="t">para que <b>alguien te llame</b></span></a></li>
+    </ol>
+  </div>
+</section>
+
+<section id="obra" class="layer l2" aria-labelledby="obra-t">
+  <div class="wrap">
+    <h2 id="obra-t">La obra</h2>
+    <p class="epigrafe">Un dispensador de agua de oficina, un parlante bajo el agua. Adentro, un murmullo de voces que no llega a ser palabra.</p>
+    <p>Una columna de agua, translúcida y alta, con un parlante sumergido. Desde abajo suben burbujas, como si algo reclamara ser escuchado y el agua se lo impidiera.</p>
+    <p>La pieza nace de una anécdota de centro de llamadas, pero no la cuenta. Trabaja con lo que queda cuando el cuidado se vuelve un costo prescindible.</p>
+    <h3>De dónde viene</h3>
+    <p>Llamada n.° 237 surge de un proceso de investigación de la maestría en Artes y Profesiones Artísticas del Círculo de Bellas Artes de Madrid. Ahí trabajé sobre el cuerpo en las lógicas del trabajo corporativo y de oficina, y sobre el cuerpo frente a las tecnologías digitales. De esa investigación deriva esta obra.</p>
+    <dl class="ficha">
+      <dt>Obra</dt><dd>Llamada n.° 237, instalación sonora, 2026</dd>
+      <dt>Autoría</dt><dd>Martín Fernández Navarro</dd>
+      <dt>Se presenta en</dt><dd>62.º Premio Nacional de Artes Visuales, Espacio de Arte Contemporáneo (EAC), Montevideo</dd>
+      <dt>Inauguración</dt><dd>26 de noviembre de 2026</dd>
+    </dl>
+  </div>
+</section>
+
+<section id="anecdota" class="layer l3" aria-labelledby="an-t">
+  <div class="wrap">
+    <h2 id="an-t">La anécdota</h2>
+    <p>En uno de los centros de llamadas donde trabajé, el agua del dispensador sabía distinto cada día. Ese sabor se volvió tema de conversación en los pasillos.</p>
+    <p>Después de meses de reclamos, un laboratorio la analizó. El filtro siempre había estado desconectado y, en el tanque de la azotea, había tres ratas muertas.</p>
+    <p>La obra parte de esa historia para hablar de algo que no lo es: un sistema que lo mide todo en rendimiento y deja el cuidado afuera de la cuenta.</p>
+    <p>El agua que llena la pieza la fui juntando de dispensers y botellones de personas que trabajan en centros de llamadas.</p>
+  </div>
+</section>
+
+<section id="mapa" class="layer l4" aria-labelledby="mapa-t">
+  <div class="wide">
+    <div class="wrap" style="padding:0">
+      <h2 id="mapa-t">Dónde atienden</h2>
+      <p>Cada punto es un centro de llamadas de Montevideo: una oficina donde, todos los días, alguien atiende la voz de otros.</p>
+    </div>
+    <div id="map" role="region" aria-label="Mapa de Montevideo con los centros de llamadas marcados"></div>
+    <p class="map-nota muted">Los puntos son aproximados y el mapa sigue en construcción. <span id="mapa-cuenta"></span></p>
+  </div>
+</section>
+
+<section id="archivo" class="layer l5" aria-labelledby="ar-t">
+  <div class="wide">
+    <div class="wrap" style="padding:0">
+      <h2 id="ar-t">Archivo</h2>
+      <p>Fotos de las oficinas donde trabajé y de obras anteriores. El archivo se va completando.</p>
+    </div>
+    <h3>Oficinas</h3>
+    <ul class="grid">
+      <li><figure><div class="ph"><img src="img/oficina-1.jpg" alt="" loading="lazy" onerror="this.remove()">Foto pendiente</div><figcaption>Puesto de trabajo</figcaption></figure></li>
+      <li><figure><div class="ph"><img src="img/oficina-2.jpg" alt="" loading="lazy" onerror="this.remove()">Foto pendiente</div><figcaption>Piso de atención</figcaption></figure></li>
+      <li><figure><div class="ph"><img src="img/oficina-3.jpg" alt="" loading="lazy" onerror="this.remove()">Foto pendiente</div><figcaption>El dispenser</figcaption></figure></li>
+      <li><figure><div class="ph"><img src="img/oficina-4.jpg" alt="" loading="lazy" onerror="this.remove()">Foto pendiente</div><figcaption>Auriculares y pantallas</figcaption></figure></li>
+    </ul>
+    <h3>Trabajos anteriores</h3>
+    <ul class="grid">
+      <li><figure><div class="ph"><img src="img/narciso.jpg" alt="" loading="lazy" onerror="this.remove()">Foto pendiente</div><figcaption>Narciso, videoperformance sobre pantallas e imagen de uno mismo</figcaption></figure></li>
+      <li><figure><div class="ph"><img src="img/deposito-cero.jpg" alt="" loading="lazy" onerror="this.remove()">Foto pendiente</div><figcaption>Depósito Cero, video sobre cuerpos de agua y superficies reflejantes</figcaption></figure></li>
+      <li><figure><div class="ph"><img src="img/magritte-tv.jpg" alt="" loading="lazy" onerror="this.remove()">Foto pendiente</div><figcaption>Magritte TV, performance</figcaption></figure></li>
+    </ul>
+    <p class="muted">Más trabajos en <a href="https://martinfernandeznavarro.github.io">martinfernandeznavarro.github.io</a>.</p>
+  </div>
+</section>
+
+<section id="escuchar" class="layer l6" aria-labelledby="es-t">
+  <div class="wrap">
+    <h2 id="es-t">Escuchar</h2>
+    <p>Un fragmento de lo que suena adentro del agua. Mejor con auriculares.</p>
+    <audio id="aud" controls preload="none"><source src="audio/fragmento.mp3" type="audio/mpeg">Tu navegador no puede reproducir audio.</audio>
+    <p id="aud-nota" class="muted" hidden>El fragmento se publica con la inauguración.</p>
+  </div>
+</section>
+
+<section id="bitacora" class="layer l7" aria-labelledby="bi-t">
+  <div class="wrap">
+    <h2 id="bi-t">Bitácora</h2>
+    <ol class="bit">
+      <li><time datetime="2026-10-19">19 de octubre</time><p>Primeras pruebas con bidones de agua de 20 litros. El plástico se resiste a la deformación y el calor deja apenas una mancha.</p></li>
+      <li><time datetime="2026-10-21">21 de octubre</time><p>Llega la selección en el Premio Nacional y empieza la producción de la obra.</p></li>
+      <li><time datetime="2026-11-16">16 de noviembre</time><p>Empiezo a juntar agua de dispensers y botellones de personas que trabajan en centros de llamadas.</p></li>
+      <li><time datetime="2026-11-26">26 de noviembre</time><p>Inauguración en el EAC.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section id="llamame" class="layer l8" aria-labelledby="ll-t">
+  <div class="wrap">
+    <h2 id="ll-t">Que alguien te llame</h2>
+    <p>Dejá tu número de WhatsApp. En las próximas 48 horas alguien te va a llamar para contarte de qué va la obra. Va a ser un número que no conocés.</p>
+
+    <form id="form-llamada" novalidate>
+      <p class="hp" aria-hidden="true"><label>No completar este campo<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></p>
+
+      <label for="nombre">¿Cómo te llamás? <small>(opcional)</small></label>
+      <input id="nombre" name="nombre" type="text" autocomplete="given-name">
+
+      <label for="tel">Tu número de WhatsApp</label>
+      <input id="tel" name="telefono" type="tel" inputmode="tel" autocomplete="tel" placeholder="09X XXX XXX" aria-describedby="tel-ayuda err-tel" required>
+      <p id="tel-ayuda" class="ayuda">Si el número no es de Uruguay, empezalo con el código de país, por ejemplo +54.</p>
+      <p id="err-tel" class="err" hidden></p>
+
+      <fieldset aria-describedby="err-franja">
+        <legend>¿Cuándo te llamamos?</legend>
+        <div class="chips">
+          <label class="chip"><input type="checkbox" name="franja" value="manana"><span>Mañana (8 a 12)</span></label>
+          <label class="chip"><input type="checkbox" name="franja" value="mediodia"><span>Mediodía (12 a 14)</span></label>
+          <label class="chip"><input type="checkbox" name="franja" value="tarde"><span>Tarde (14 a 19)</span></label>
+          <label class="chip"><input type="checkbox" name="franja" value="noche"><span>Noche (19 a 22)</span></label>
+          <label class="chip"><input type="checkbox" name="franja" value="cualquiera"><span>Cualquier momento, las 24 horas</span></label>
+        </div>
+        <p id="err-franja" class="err" hidden></p>
+      </fieldset>
+
+      <label class="consent" for="ok"><input id="ok" type="checkbox" required aria-describedby="err-ok"><span>Acepto que usen mi número solo para esta llamada.</span></label>
+      <p id="err-ok" class="err" hidden></p>
+
+      <button id="enviar" class="btn rojo" type="submit">Pedir la llamada</button>
+      <p id="estado" role="status" aria-live="polite"></p>
+    </form>
+
+    <div id="listo" tabindex="-1" hidden>
+      <h3>Pedido recibido</h3>
+      <p>Alguien te va a llamar en las próximas 48 horas, dentro de la franja que elegiste. Atendé el número desconocido: es esta llamada.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="layer l9">
+  <div class="wrap">
+    <p>Martín Fernández Navarro</p>
+    <p class="muted">Llamada n.° 237, instalación sonora, 2026. 62.º Premio Nacional de Artes Visuales, Espacio de Arte Contemporáneo, Montevideo.</p>
+    <p class="muted"><a href="https://www.instagram.com/martin.zip.art">@martin.zip.art</a> y <a href="https://martinfernandeznavarro.github.io">martinfernandeznavarro.github.io</a></p>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  /* ===== CONFIGURACIÓN ===== */
+  // Pegá acá la dirección de tu formulario de Formspree, por ejemplo: https://formspree.io/f/abcdwxyz
+  var FORM_ENDPOINT = '';
+
+  // Centros de llamadas. Ubicaciones aproximadas por barrio; reemplazar por las reales.
+  var CENTROS = [
+    { nombre: 'Ciudad Vieja', lat: -34.9060, lng: -56.2030 },
+    { nombre: 'Centro', lat: -34.9058, lng: -56.1880 },
+    { nombre: 'Cordón', lat: -34.9030, lng: -56.1770 },
+    { nombre: 'Tres Cruces', lat: -34.8945, lng: -56.1665 },
+    { nombre: 'Aguada', lat: -34.8890, lng: -56.1940 },
+    { nombre: 'Parque Rodó', lat: -34.9140, lng: -56.1680 },
+    { nombre: 'Pocitos', lat: -34.9130, lng: -56.1500 },
+    { nombre: 'Buceo', lat: -34.8950, lng: -56.1340 }
+  ];
+  /* ========================= */
+
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var sleep = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }); };
+  var $ = function (id) { return document.getElementById(id); };
+
+  /* ---------- sonido (apagado por defecto) ---------- */
+  var audioCtx = null, sonido = false;
+  function ctx() {
+    if (!audioCtx) { var AC = window.AudioContext || window.webkitAudioContext; if (AC) audioCtx = new AC(); }
+    return audioCtx;
+  }
+  function tono(freqs, ms, vol) {
+    if (!sonido) return;
+    var c = ctx(); if (!c) return;
+    var t = c.currentTime, d = ms / 1000, g = c.createGain();
+    g.gain.setValueAtTime(0, t);
+    g.gain.linearRampToValueAtTime(vol || 0.06, t + 0.01);
+    g.gain.setValueAtTime(vol || 0.06, t + d - 0.02);
+    g.gain.linearRampToValueAtTime(0, t + d);
+    g.connect(c.destination);
+    freqs.forEach(function (f) { var o = c.createOscillator(); o.type = 'sine'; o.frequency.value = f; o.connect(g); o.start(t); o.stop(t + d + 0.02); });
+  }
+  var DTMF = { 1: [697, 1209], 2: [697, 1336], 3: [697, 1477], 4: [770, 1209], 5: [770, 1336], 6: [770, 1477], 0: [941, 1336] };
+  var btnSnd = $('snd');
+  btnSnd.addEventListener('click', function () {
+    sonido = !sonido;
+    btnSnd.setAttribute('aria-pressed', String(sonido));
+    btnSnd.textContent = sonido ? 'Sonido encendido' : 'Sonido apagado';
+    if (sonido) { var c = ctx(); if (c && c.resume) c.resume(); tono([425], 200, 0.05); }
+  });
+
+  /* ---------- pantalla LCD de matriz de puntos 5x7 ---------- */
+  var G = {
+    ' ': ['00000','00000','00000','00000','00000','00000','00000'],
+    'A': ['01110','10001','10001','11111','10001','10001','10001'],
+    'C': ['01110','10001','10000','10000','10000','10001','01110'],
+    'D': ['11110','10001','10001','10001','10001','10001','11110'],
+    'E': ['11111','10000','10000','11110','10000','10000','11111'],
+    'L': ['10000','10000','10000','10000','10000','10000','11111'],
+    'M': ['10001','11011','10101','10101','10001','10001','10001'],
+    'N': ['10001','11001','10101','10011','10001','10001','10001'],
+    'O': ['01110','10001','10001','10001','10001','10001','01110'],
+    'T': ['11111','00100','00100','00100','00100','00100','00100'],
+    'U': ['10001','10001','10001','10001','10001','10001','01110'],
+    '2': ['01110','10001','00001','00010','00100','01000','11111'],
+    '3': ['11110','00001','00001','01110','00001','00001','11110'],
+    '7': ['11111','00001','00010','00100','01000','01000','01000'],
+    '.': ['00000','00000','00000','00000','00000','01100','01100'],
+    '°': ['01100','10010','10010','01100','00000','00000','00000']
+  };
+  var COLS = 16, MX = 3, MY = 3, GAP = 3, PH = 1.25;
+  var cv = $('lcd'), g2 = cv.getContext('2d');
+  var lcd = { l1: '', l2: '', ocultar2: false, cursor: null, cursorOn: false };
+  var TITULO = 'LLAMADA N.° 237';
+
+  function dibujar() {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var W = cv.clientWidth, H = cv.clientHeight;
+    if (!W) return;
+    if (cv.width !== Math.round(W * dpr)) { cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); }
+    g2.setTransform(dpr, 0, 0, dpr, 0, 0);
+    g2.clearRect(0, 0, W, H);
+    var totalX = MX * 2 + COLS * 6 - 1, p = W / totalX, q = p * PH;
+    var dw = p * 0.84, dh = q * 0.84;
+    var lineas = [lcd.l1, lcd.ocultar2 ? '' : lcd.l2];
+    for (var L = 0; L < 2; L++) {
+      var y0 = MY + L * (7 + GAP);
+      for (var i = 0; i < COLS; i++) {
+        var ch = lineas[L].charAt(i) || ' ';
+        var glifo = G[ch] || G[' '];
+        var cursorAqui = lcd.cursor && lcd.cursor.line === L + 1 && lcd.cursor.i === i && lcd.cursorOn;
+        for (var r = 0; r < 7; r++) {
+          for (var c = 0; c < 5; c++) {
+            var on = cursorAqui || glifo[r].charAt(c) === '1';
+            g2.fillStyle = on ? '#16200e' : 'rgba(22,32,14,0.08)';
+            g2.fillRect((MX + i * 6 + c) * p + (p - dw) / 2, (y0 + r) * q + (q - dh) / 2, dw, dh);
+          }
+        }
+      }
+    }
+  }
+  if ('ResizeObserver' in window) new ResizeObserver(dibujar).observe(cv); else window.addEventListener('resize', dibujar);
+
+  var introVisible = true, atendida = false;
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (e) { introVisible = e[0].isIntersecting; }, { threshold: 0.25 }).observe($('intro'));
+  }
+
+  function pulso(on) {
+    $('led').classList.toggle('on', on);
+    $('lcdbox').classList.toggle('bl', on);
+    lcd.ocultar2 = !on;
+    dibujar();
+  }
+
+  async function escribirLinea(n, texto, vel) {
+    for (var i = 0; i < texto.length; i++) {
+      lcd['l' + n] = texto.slice(0, i + 1);
+      lcd.cursor = { line: n, i: i + 1 };
+      dibujar();
+      await sleep(vel * (0.7 + Math.random() * 0.6));
+    }
+  }
+
+  async function secuenciaInicial() {
+    if (reduce) { lcd.l2 = TITULO; dibujar(); return; }
+    var cur = setInterval(function () { lcd.cursorOn = !lcd.cursorOn; dibujar(); }, 500);
+    await sleep(900);
+    await escribirLinea(2, TITULO, 120);
+    lcd.cursor = null; clearInterval(cur); dibujar();
+    await sleep(500);
+    while (!atendida) {
+      if (!introVisible) { await sleep(400); continue; }
+      for (var k = 0; k < 3 && !atendida && introVisible; k++) {
+        pulso(true); tono([425], 260, 0.05);
+        await sleep(280);
+        pulso(false);
+        await sleep(520);
+      }
+      lcd.ocultar2 = false; dibujar();
+      await sleep(2200);
+    }
+  }
+  secuenciaInicial();
+
+  $('atender').addEventListener('click', async function () {
+    atendida = true;
+    $('led').classList.remove('on'); $('lcdbox').classList.remove('bl');
+    lcd.ocultar2 = false; lcd.l1 = 'CONECTADO'; dibujar();
+    tono([941, 1336], 140, 0.05);
+    await sleep(reduce ? 0 : 900);
+    $('menu').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+    $('menu').setAttribute('tabindex', '-1');
+    $('menu').focus({ preventScroll: true });
+  });
+
+  /* ---------- saludo tipeado y menú ---------- */
+  var tipeables = Array.prototype.slice.call(document.querySelectorAll('[data-type]'));
+  var textos = tipeables.map(function (el) { return el.textContent; });
+  var ivr = $('ivr');
+  if (!reduce) tipeables.forEach(function (el) { el.textContent = ''; });
+  async function tipear(el, texto, vel) {
+    for (var i = 0; i < texto.length; i++) { el.textContent = texto.slice(0, i + 1); await sleep(vel * (0.6 + Math.random() * 0.8)); }
+  }
+  var saludado = false;
+  async function saludar() {
+    if (saludado) return; saludado = true;
+    if (!reduce) {
+      for (var i = 0; i < tipeables.length; i++) { await tipear(tipeables[i], textos[i], 38); await sleep(250); }
+    }
+    ivr.classList.add('on');
+  }
+  if (reduce || !('IntersectionObserver' in window)) { saludar(); }
+  else { new IntersectionObserver(function (e, o) { if (e[0].isIntersecting) { o.disconnect(); saludar(); } }, { threshold: 0.4 }).observe($('saludo')); }
+
+  /* ---------- teclas del menú ---------- */
+  var DESTINO = { '1': 'obra', '2': 'anecdota', '3': 'mapa', '4': 'archivo', '5': 'escuchar', '6': 'bitacora', '0': 'llamame' };
+  ivr.addEventListener('click', function (e) {
+    var a = e.target.closest('a[data-k]'); if (a) tono(DTMF[a.getAttribute('data-k')], 160, 0.06);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    var t = e.target.tagName; if (t === 'INPUT' || t === 'TEXTAREA' || t === 'SELECT' || t === 'AUDIO') return;
+    if (DESTINO[e.key]) {
+      tono(DTMF[e.key], 160, 0.06);
+      var s = $(DESTINO[e.key]); s.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+      history.replaceState(null, '', '#' + DESTINO[e.key]);
+    }
+  });
+
+  /* ---------- medidor de profundidad ---------- */
+  var marca = document.querySelector('#gauge .mark'), prof = $('prof'), tick = false;
+  function medir() {
+    tick = false;
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    var p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+    marca.style.top = 'calc(' + (p * 100) + '% - ' + (p * 3) + 'px)';
+    prof.textContent = (p * 1.5).toFixed(2).replace('.', ',') + ' m';
+  }
+  window.addEventListener('scroll', function () { if (!tick) { tick = true; requestAnimationFrame(medir); } }, { passive: true });
+  window.addEventListener('resize', medir); medir();
+
+  /* ---------- mapa ---------- */
+  (function () {
+    var cont = $('map');
+    if (!window.L) { cont.innerHTML = '<p class="mapa-falla">No se pudo cargar el mapa. Revisá tu conexión y recargá la página.</p>'; return; }
+    var map = L.map(cont, { scrollWheelZoom: false }).setView([-34.90, -56.17], 12);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap &copy; CARTO', subdomains: 'abcd', maxZoom: 19
+    }).addTo(map);
+    CENTROS.forEach(function (c, i) {
+      var icon = L.divIcon({ className: '', html: '<span class="dot" style="animation-delay:' + (i * 0.45) + 's"></span>', iconSize: [14, 14], iconAnchor: [7, 7] });
+      L.marker([c.lat, c.lng], { icon: icon, title: c.nombre, alt: 'Centro de llamadas, zona ' + c.nombre })
+        .addTo(map).bindPopup('Centro de llamadas, zona ' + c.nombre);
+    });
+    $('mapa-cuenta').textContent = CENTROS.length + ' puntos marcados.';
+    cont.addEventListener('click', function () { map.scrollWheelZoom.enable(); });
+    cont.addEventListener('mouseleave', function () { map.scrollWheelZoom.disable(); });
+    setTimeout(function () { map.invalidateSize(); }, 300);
+  })();
+
+  /* ---------- audio: aviso si falta el archivo ---------- */
+  var src = document.querySelector('#aud source');
+  if (src) src.addEventListener('error', function () { $('aud-nota').hidden = false; $('aud').hidden = true; });
+
+  /* ---------- formulario ---------- */
+  var form = $('form-llamada'), estado = $('estado');
+  var ETIQ = { manana: 'Mañana (8 a 12)', mediodia: 'Mediodía (12 a 14)', tarde: 'Tarde (14 a 19)', noche: 'Noche (19 a 22)', cualquiera: 'Cualquier momento (24 horas)' };
+
+  form.addEventListener('change', function (e) {
+    if (e.target.name !== 'franja') return;
+    var cualquiera = form.querySelector('input[value="cualquiera"]');
+    if (e.target === cualquiera && cualquiera.checked) {
+      form.querySelectorAll('input[name="franja"]').forEach(function (i) { if (i !== cualquiera) i.checked = false; });
+    } else if (e.target !== cualquiera && e.target.checked) { cualquiera.checked = false; }
+  });
+
+  function error(id, msg) { var el = $(id); el.textContent = msg || ''; el.hidden = !msg; }
+  function normalizar(raw) {
+    var tiene = raw.trim().charAt(0) === '+', d = raw.replace(/\D/g, '');
+    if (tiene) return d;
+    if (/^09\d{7}$/.test(d)) return '598' + d.slice(1);
+    if (/^9\d{7}$/.test(d)) return '598' + d;
+    return d;
+  }
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    estado.textContent = ''; estado.className = '';
+    ['err-tel', 'err-franja', 'err-ok'].forEach(function (i) { error(i, ''); });
+
+    if (form.elements._gotcha.value) { mostrarListo(); return; }   // robot
+
+    var tel = form.elements.telefono.value.trim();
+    var digitos = tel.replace(/\D/g, '');
+    var franjas = Array.prototype.slice.call(form.querySelectorAll('input[name="franja"]:checked')).map(function (i) { return i.value; });
+    var primero = null;
+    if (digitos.length < 8 || digitos.length > 15) { error('err-tel', 'Escribí un número de WhatsApp válido, con 8 a 15 dígitos.'); primero = primero || form.elements.telefono; }
+    if (!franjas.length) { error('err-franja', 'Elegí al menos una franja para que te llamemos.'); primero = primero || form.querySelector('input[name="franja"]'); }
+    if (!$('ok').checked) { error('err-ok', 'Para que te llamemos, aceptá el uso del número.'); primero = primero || $('ok'); }
+    if (primero) { primero.focus(); return; }
+
+    if (!FORM_ENDPOINT) {
+      estado.className = 'error';
+      estado.textContent = 'El formulario todavía no está conectado. Escribinos por Instagram a @martin.zip.art.';
+      return;
+    }
+
+    var ahora = new Date();
+    var datos = {
+      nombre: form.elements.nombre.value.trim(),
+      telefono: tel,
+      telefono_whatsapp: normalizar(tel),
+      franjas: franjas.map(function (k) { return ETIQ[k]; }).join(', '),
+      pedido_el: ahora.toISOString(),
+      llamar_antes_de: new Date(ahora.getTime() + 48 * 3600 * 1000).toISOString(),
+      _subject: 'Nuevo pedido de llamada, Llamada n.° 237'
+    };
+    var btn = $('enviar'); btn.disabled = true; estado.textContent = 'Enviando…';
+    try {
+      var r = await fetch(FORM_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(datos) });
+      if (!r.ok) throw new Error('http ' + r.status);
+      mostrarListo();
+    } catch (err) {
+      btn.disabled = false;
+      estado.className = 'error';
+      estado.textContent = 'No pudimos enviar el pedido. Probá de nuevo en un momento, o escribinos por Instagram a @martin.zip.art.';
+    }
+  });
+
+  function mostrarListo() {
+    form.hidden = true;
+    var l = $('listo'); l.hidden = false; l.focus();
+    tono([941, 1336], 200, 0.05);
+  }
+})();
+</script>
+</body>
+</html>
