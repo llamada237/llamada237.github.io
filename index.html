@@ -66,13 +66,19 @@
   .snd { position: fixed; top: 12px; left: 12px; z-index: 40; font: 400 .95rem/1 var(--sans); background: rgba(20,30,40,.82); color: #fff; border: 0; border-radius: 8px; padding: .7rem .9rem; min-height: 2.75rem; cursor: pointer; }
   .snd[aria-pressed="true"] { background: var(--rojo); }
 
-  /* ---------- medidor de profundidad ---------- */
+  /* ---------- contador de llamadas atendidas (0 a 237 según el scroll) ---------- */
   #gauge { position: fixed; right: 10px; top: 50%; transform: translateY(-50%); height: 44vh; width: 18px; z-index: 30; pointer-events: none; }
   #gauge .rule { position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: #fff; mix-blend-mode: difference; opacity: .7; }
   #gauge .rule::before { content: ""; position: absolute; left: -5px; top: 0; bottom: 0; width: 12px; background: repeating-linear-gradient(180deg, #fff 0 1px, transparent 1px 10%); }
   #gauge .mark { position: absolute; left: 0; top: 0; width: 18px; height: 3px; background: var(--rojo); }
-  #prof { position: absolute; right: 24px; top: 100%; margin-top: 10px; white-space: nowrap; font: 600 .85rem/1 var(--sans); background: rgba(10,20,30,.8); color: #fff; padding: .35rem .5rem; border-radius: 6px; }
-  @media (max-width: 700px) { #gauge { display: none; } }
+  #prof { position: absolute; right: 24px; top: 100%; margin-top: 10px; white-space: nowrap; font: 400 .95rem/1.1 var(--sans); background: rgba(10,20,30,.82); color: #fff; padding: .45rem .7rem; border-radius: 6px; text-align: right; font-variant-numeric: tabular-nums; }
+  #prof b { font-weight: 600; font-size: 1.35rem; }
+  #prof small { display: block; font-size: .78rem; opacity: .85; margin-top: .15rem; }
+  @media (max-width: 700px) {
+    #gauge { top: auto; bottom: 12px; right: 12px; transform: none; height: auto; width: auto; }
+    #gauge .rule, #gauge .mark { display: none; }
+    #prof { position: static; margin: 0; }
+  }
 
   /* ---------- intro: pantalla de teléfono de oficina ---------- */
   #intro { min-height: 100svh; display: grid; place-content: center; justify-items: center; gap: 2.6rem; padding: 4rem 16px 3rem; }
@@ -163,7 +169,7 @@
 <body>
 <a class="skip" href="#menu">Saltar la animación</a>
 <button id="snd" class="snd" type="button" aria-pressed="false">Sonido apagado</button>
-<div id="gauge" aria-hidden="true"><div class="rule"></div><div class="mark"></div><span id="prof">0,00 m</span></div>
+<div id="gauge" aria-hidden="true"><div class="rule"></div><div class="mark"></div><span id="prof"><b id="n">0</b> / 237<small>llamadas atendidas</small></span></div>
 
 <header id="intro" class="layer l0">
   <h1 class="sr">Llamada n.° 237</h1>
@@ -521,14 +527,14 @@
     }
   });
 
-  /* ---------- medidor de profundidad ---------- */
-  var marca = document.querySelector('#gauge .mark'), prof = $('prof'), tick = false;
+  /* ---------- contador de llamadas atendidas (0 a 237 según el scroll) ---------- */
+  var marca = document.querySelector('#gauge .mark'), cuenta = $('n'), tick = false;
   function medir() {
     tick = false;
     var max = document.documentElement.scrollHeight - window.innerHeight;
     var p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
     marca.style.top = 'calc(' + (p * 100) + '% - ' + (p * 3) + 'px)';
-    prof.textContent = (p * 1.5).toFixed(2).replace('.', ',') + ' m';
+    cuenta.textContent = Math.round(p * 237);
   }
   window.addEventListener('scroll', function () { if (!tick) { tick = true; requestAnimationFrame(medir); } }, { passive: true });
   window.addEventListener('resize', medir); medir();
