@@ -4,16 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Llamada n.° 237</title>
-<meta name="description" content="Llamada n.° 237: instalación sonora de Martín Fernández Navarro. 62.º Premio Nacional de Artes Visuales, Espacio de Arte Contemporáneo, Montevideo.">
+<meta name="description" content="Llamada n.° 237: instalación sonora de Martín Fernández Navarro. 62.º Premio Nacional de Artes Visuales, Espacio de Arte Contemporáneo, Montevideo. Dejá tu número y un operador te llama para contarte de la pieza.">
 <meta name="theme-color" content="#dde1e2">
 <meta property="og:title" content="Llamada n.° 237">
-<meta property="og:description" content="Instalación sonora de Martín Fernández Navarro. Dejá tu número y alguien te llama para contarte de qué va la obra.">
+<meta property="og:description" content="Instalación sonora de Martín Fernández Navarro. Te llamamos para contarte de la pieza.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://llamada237.github.io/">
+<meta property="og:image" content="https://llamada237.github.io/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="628">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23b4c1a6'/%3E%3Ccircle cx='50' cy='14' r='6' fill='%23d63a25'/%3E%3Ctext x='8' y='46' font-family='Arial' font-weight='700' font-size='26' fill='%2316200e'%3E237%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@400;600&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <script>document.documentElement.classList.add('js');</script>
 <style>
   :root {
@@ -37,14 +41,13 @@
   .layer { color: var(--ink); background: linear-gradient(180deg, var(--from) 0, var(--bg) 6rem); padding: clamp(7rem, 14vw, 10rem) 0 clamp(4rem, 9vw, 7rem); scroll-margin-top: 0; }
   .l0 { --bg: #dde1e2; --from: #dde1e2; --ink: #162029; padding: 0; }
   .l1 { --bg: #cddbe3; --from: #dde1e2; --ink: #10202b; }
-  .l2 { --bg: #a9c5d6; --from: #cddbe3; --ink: #0c1c28; }
-  .l3 { --bg: #7fa8c4; --from: #a9c5d6; --ink: #08161f; }
-  .l4 { --bg: #2f6d9a; --from: #7fa8c4; --ink: #f6fafc; }
+  .l2 { --bg: #b9d0de; --from: #cddbe3; --ink: #0c1c28; }
+  .l3 { --bg: #8db4cd; --from: #b9d0de; --ink: #08161f; }
+  .l4 { --bg: #2f6d9a; --from: #8db4cd; --ink: #f6fafc; }
   .l5 { --bg: #1f5885; --from: #2f6d9a; --ink: #f2f8fb; }
   .l6 { --bg: #123f68; --from: #1f5885; --ink: #eef6fa; }
   .l7 { --bg: #0a2d4f; --from: #123f68; --ink: #eaf3f8; }
-  .l8 { --bg: #061d38; --from: #0a2d4f; --ink: #e8f1f6; }
-  .l9 { --bg: #030f1f; --from: #061d38; --ink: #dce8ef; padding-top: 7rem; padding-bottom: 3rem; }
+  .l9 { --bg: #030f1f; --from: #0a2d4f; --ink: #dce8ef; padding-top: 7rem; padding-bottom: 3rem; }
 
   .wrap { max-width: 44rem; margin: 0 auto; padding: 0 16px; }
   .wide { max-width: 68rem; margin: 0 auto; padding: 0 16px; }
@@ -52,28 +55,32 @@
   h3 { font-family: var(--sans); font-weight: 600; font-size: 1.5rem; margin: 2.6rem 0 .8rem; }
   p { margin: 0 0 1.2em; }
   a { color: inherit; text-underline-offset: .2em; }
-  .muted { opacity: .78; }
-  .epigrafe { font-style: italic; font-size: clamp(1.3rem, 3.4vw, 1.7rem); line-height: 1.45; border-left: 3px solid var(--rojo); padding-left: 1.1rem; margin: 0 0 2.2rem; }
+  .muted { opacity: .8; }
+  .dialogo { font-style: italic; font-size: clamp(1.2rem, 3.2vw, 1.5rem); line-height: 1.5; border-left: 3px solid var(--rojo); padding-left: 1.1rem; margin: 0 0 1.6rem; }
+  .dialogo p { margin: 0 0 .5em; }
+  .dialogo p:last-child { margin: 0; }
 
   /* ---------- botones ---------- */
-  .btn { display: inline-flex; align-items: center; gap: .7rem; font: 600 1.15rem/1 var(--sans); padding: 1rem 1.8rem; min-height: 3.2rem; background: var(--azul); color: #fff; border: 0; border-radius: 10px; cursor: pointer; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: .7rem; font: 600 1.15rem/1 var(--sans); padding: 1rem 1.8rem; min-height: 3.2rem; background: var(--azul); color: #fff; border: 0; border-radius: 10px; cursor: pointer; text-decoration: none; }
   .btn:hover { background: #17507f; }
   .btn.rojo { background: var(--rojo); }
   .btn.rojo:hover { background: #b92e1b; }
-  .btn[disabled] { opacity: .6; cursor: wait; }
+  .btn.ghost { background: transparent; color: inherit; border: 2px solid currentColor; padding: .7rem 1.2rem; min-height: 3rem; font-size: 1.05rem; }
+  .btn.ghost:hover { background: rgba(255,255,255,.14); }
+  .btn[disabled] { opacity: .45; cursor: default; }
   .btn svg { width: 1.3rem; height: 1.3rem; fill: currentColor; }
 
   .snd { position: fixed; top: 12px; left: 12px; z-index: 40; font: 400 .95rem/1 var(--sans); background: rgba(20,30,40,.82); color: #fff; border: 0; border-radius: 8px; padding: .7rem .9rem; min-height: 2.75rem; cursor: pointer; }
   .snd[aria-pressed="true"] { background: var(--rojo); }
 
-  /* ---------- contador de llamadas atendidas (0 a 237 según el scroll) ---------- */
+  /* ---------- contador de llamadas atendidas en la jornada (0 a 237 según el scroll) ---------- */
   #gauge { position: fixed; right: 10px; top: 50%; transform: translateY(-50%); height: 44vh; width: 18px; z-index: 30; pointer-events: none; }
   #gauge .rule { position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: #fff; mix-blend-mode: difference; opacity: .7; }
   #gauge .rule::before { content: ""; position: absolute; left: -5px; top: 0; bottom: 0; width: 12px; background: repeating-linear-gradient(180deg, #fff 0 1px, transparent 1px 10%); }
   #gauge .mark { position: absolute; left: 0; top: 0; width: 18px; height: 3px; background: var(--rojo); }
-  #prof { position: absolute; right: 24px; top: 100%; margin-top: 10px; white-space: nowrap; font: 400 .95rem/1.1 var(--sans); background: rgba(10,20,30,.82); color: #fff; padding: .45rem .7rem; border-radius: 6px; text-align: right; font-variant-numeric: tabular-nums; }
+  #prof { position: absolute; right: 24px; top: 100%; margin-top: 10px; white-space: nowrap; font: 400 .95rem/1.1 var(--sans); background: rgba(10,20,30,.84); color: #fff; padding: .45rem .7rem; border-radius: 6px; text-align: right; font-variant-numeric: tabular-nums; }
   #prof b { font-weight: 600; font-size: 1.35rem; }
-  #prof small { display: block; font-size: .78rem; opacity: .85; margin-top: .15rem; }
+  #prof small { display: block; font-size: .78rem; opacity: .9; margin-top: .15rem; line-height: 1.2; }
   @media (max-width: 700px) {
     #gauge { top: auto; bottom: 12px; right: 12px; transform: none; height: auto; width: auto; }
     #gauge .rule, #gauge .mark { display: none; }
@@ -89,6 +96,22 @@
   .lcd.bl { background: #c9d6bb; }
   #lcd { display: block; width: 100%; aspect-ratio: 101 / 28.75; }
 
+  /* ---------- formulario: Te llamamos para contarte de la pieza ---------- */
+  form { margin-top: 2rem; }
+  label { display: block; font: 600 1.1rem/1.3 var(--sans); margin: 1.6rem 0 .4rem; padding: 0; }
+  label small { font-weight: 400; opacity: .8; }
+  input[type="text"], input[type="tel"] { width: 100%; font: 400 1.3rem/1.3 var(--serif); color: var(--ink); background: rgba(255,255,255,.55); border: 0; border-bottom: 2px solid var(--ink); padding: .8rem .8rem; min-height: 3.2rem; border-radius: 4px 4px 0 0; }
+  input::placeholder { color: rgba(16,32,43,.55); }
+  .ayuda { font-size: .95rem; margin: .4rem 0 0; opacity: .85; }
+  .consent { display: flex; gap: .8rem; align-items: flex-start; font: 400 1rem/1.5 var(--serif); margin: 1.8rem 0 1.6rem; }
+  .consent input { width: 1.4rem; height: 1.4rem; margin-top: .2rem; flex: none; accent-color: var(--rojo); }
+  .err { color: #a3200f; font: 600 1rem/1.4 var(--sans); margin: .5rem 0 0; }
+  .hp { position: absolute; left: -9999px; }
+  #estado { margin-top: 1rem; font: 600 1.05rem/1.4 var(--sans); }
+  #estado.error { color: #a3200f; }
+  #listo { border-left: 4px solid var(--rojo); padding-left: 1.2rem; margin-top: 2rem; }
+  #listo h3 { margin-top: 0; }
+
   /* ---------- menú telefónico ---------- */
   #saludo { min-height: 8.5rem; }
   .saludo-1 { font-style: italic; font-size: clamp(1.7rem, 4.6vw, 2.5rem); line-height: 1.25; margin: 0 0 .6rem; }
@@ -97,79 +120,62 @@
   .js .ivr:not(.on) li { opacity: 0; }
   .ivr li { transition: opacity .5s; }
   .ivr li:nth-child(2) { transition-delay: .12s; } .ivr li:nth-child(3) { transition-delay: .24s; } .ivr li:nth-child(4) { transition-delay: .36s; }
-  .ivr li:nth-child(5) { transition-delay: .48s; } .ivr li:nth-child(6) { transition-delay: .6s; } .ivr li:nth-child(7) { transition-delay: .72s; }
+  .ivr li:nth-child(5) { transition-delay: .48s; } .ivr li:nth-child(6) { transition-delay: .6s; }
   .ivr a { display: grid; grid-template-columns: clamp(3.6rem, 12vw, 5.6rem) 1fr; align-items: baseline; gap: 1rem; padding: .7rem 0; border-top: 1px solid rgba(16,32,43,.25); text-decoration: none; transition: transform .2s; }
   .ivr li:last-child a { border-bottom: 1px solid rgba(16,32,43,.25); }
   .ivr a:hover { transform: translateX(8px); }
   .ivr .d { font: 600 clamp(2.8rem, 9vw, 4.8rem)/1 var(--sans); font-variant-numeric: tabular-nums; }
   .ivr .t { font-size: clamp(1.15rem, 3vw, 1.4rem); line-height: 1.3; }
   .ivr .t b { font-weight: 500; }
+  @media (prefers-reduced-motion: reduce) { .ivr li, .ivr a { transition: none; } }
 
   /* ---------- ficha ---------- */
-  dl.ficha { display: grid; grid-template-columns: 9.5rem 1fr; gap: .5rem 1.2rem; margin: 2.4rem 0 0; padding-top: 1.4rem; border-top: 1px solid rgba(12,28,40,.3); font-size: 1rem; line-height: 1.5; }
+  dl.ficha { display: grid; grid-template-columns: 9.5rem 1fr; gap: .5rem 1.2rem; margin: 2.4rem 0 0; padding-top: 1.4rem; border-top: 1px solid rgba(255,255,255,.35); font-size: 1rem; line-height: 1.5; }
   dl.ficha dt { font: 600 1rem/1.5 var(--sans); }
   dl.ficha dd { margin: 0; }
   @media (max-width: 520px) { dl.ficha { grid-template-columns: 1fr; } dl.ficha dd { margin-bottom: .6rem; } }
 
-  /* ---------- mapa ---------- */
-  #map { height: min(62vh, 36rem); border: 1px solid rgba(255,255,255,.3); background: #0d2236; }
-  .map-nota { margin-top: .8rem; font-size: .95rem; }
-  .dot { display: block; width: 14px; height: 14px; border-radius: 50%; background: var(--rojo); box-shadow: 0 0 0 0 rgba(214,58,37,.7); animation: tu 2.4s infinite; }
-  @keyframes tu { 0% { box-shadow: 0 0 0 0 rgba(214,58,37,.75); } 60%, 100% { box-shadow: 0 0 0 16px rgba(214,58,37,0); } }
-  @media (prefers-reduced-motion: reduce) { .dot { animation: none; } .ivr li, .ivr a { transition: none; } }
-  .leaflet-container { font-family: var(--sans); }
-  .leaflet-popup-content-wrapper, .leaflet-popup-tip { background: #0d2236; color: #eef6fa; }
-  .mapa-falla { padding: 2rem 1rem; }
+  /* ---------- renders ---------- */
+  .renders { columns: 15rem; column-gap: 16px; margin: 2rem 0 0; padding: 0; list-style: none; }
+  .renders li { break-inside: avoid; margin: 0 0 22px; }
+  .renders figure { margin: 0; }
+  .zoom { display: block; width: 100%; padding: 0; border: 0; background: rgba(0,0,0,.25); cursor: zoom-in; line-height: 0; }
+  .zoom img { display: block; width: 100%; height: auto; }
+  .renders figcaption, .slide figcaption { font-size: .95rem; line-height: 1.4; margin-top: .5rem; }
 
-  /* ---------- archivo ---------- */
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr)); gap: 18px 14px; margin: 0 0 2.4rem; padding: 0; list-style: none; }
-  .grid figure { margin: 0; }
-  .ph { position: relative; aspect-ratio: 4 / 3; border: 1px dashed rgba(255,255,255,.5); display: grid; place-items: center; text-align: center; padding: 12px; font: 400 .95rem/1.3 var(--sans); }
-  .ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .grid figcaption { font-size: .95rem; line-height: 1.4; margin-top: .45rem; }
+  /* ---------- tesis: carrusel de páginas ---------- */
+  .saltos { display: flex; flex-wrap: wrap; gap: 10px; margin: 1.6rem 0 1.2rem; padding: 0; list-style: none; }
+  .saltos .btn { padding: .6rem 1rem; min-height: 2.75rem; font-size: 1rem; }
+  .saltos .btn[aria-current="true"] { background: #fff; color: #04152a; border-color: #fff; }
+  .track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: thin; overscroll-behavior-x: contain; background: rgba(0,0,0,.22); }
+  .slide { flex: 0 0 100%; scroll-snap-align: center; margin: 0; padding: 14px 12px 12px; display: flex; flex-direction: column; align-items: center; }
+  .slide .zoom { width: auto; background: none; max-width: 100%; }
+  .slide img { max-height: 76vh; width: auto; max-width: 100%; box-shadow: 0 10px 30px -12px rgba(0,0,0,.6); }
+  .slide figcaption { text-align: center; max-width: 46rem; }
+  .ctrl { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 1rem; font: 400 1.05rem/1 var(--sans); font-variant-numeric: tabular-nums; }
+  .ctrl .btn { min-width: 7.5rem; }
+  .aviso-ia { font-size: .95rem; }
 
-  /* ---------- escuchar ---------- */
-  audio { width: 100%; margin: .8rem 0 1rem; }
+  /* ---------- lightbox ---------- */
+  dialog#lb { border: 0; padding: 0; background: #020a15; color: #eaf3f8; max-width: 96vw; max-height: 94vh; overflow: auto; border-radius: 6px; }
+  dialog#lb::backdrop { background: rgba(2,10,21,.88); }
+  #lb-in { display: flex; flex-direction: column; align-items: center; padding: 12px; gap: 10px; }
+  #lb-img { display: block; max-width: 92vw; max-height: 78vh; width: auto; height: auto; }
+  #lb-cap { margin: 0; font: 400 1rem/1.4 var(--sans); text-align: center; max-width: 44rem; }
+  #lb-act { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 4px; }
 
-  /* ---------- bitácora ---------- */
-  ol.bit { list-style: none; margin: 0; padding: 0; border-left: 2px solid rgba(255,255,255,.35); }
-  ol.bit li { display: grid; grid-template-columns: 8.2rem 1fr; gap: 1rem; padding: 0 0 1.8rem 1.2rem; position: relative; }
-  ol.bit li::before { content: ""; position: absolute; left: -7px; top: .62em; width: 12px; height: 12px; border-radius: 50%; background: var(--rojo); }
-  ol.bit time { font: 600 1.1rem/1.5 var(--sans); }
-  ol.bit p { margin: 0; }
-  @media (max-width: 560px) { ol.bit li { grid-template-columns: 1fr; gap: .2rem; } }
-
-  /* ---------- formulario ---------- */
-  form { margin-top: 2rem; }
-  label, legend { display: block; font: 600 1.1rem/1.3 var(--sans); margin: 1.6rem 0 .4rem; padding: 0; }
-  label small { font-weight: 400; opacity: .8; }
-  input[type="text"], input[type="tel"] { width: 100%; font: 400 1.3rem/1.3 var(--serif); color: #fff; background: rgba(255,255,255,.08); border: 0; border-bottom: 2px solid rgba(255,255,255,.6); padding: .8rem .8rem; min-height: 3.2rem; border-radius: 4px 4px 0 0; }
-  input::placeholder { color: rgba(255,255,255,.5); }
-  .ayuda { font-size: .95rem; margin: .4rem 0 0; opacity: .8; }
-  fieldset { border: 0; padding: 0; margin: 0; }
-  .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: .4rem; }
-  .chip { position: relative; margin: 0; font-weight: 400; }
-  .chip input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
-  .chip span { display: block; padding: .75rem 1.1rem; min-height: 2.9rem; border: 1px solid rgba(255,255,255,.55); border-radius: 8px; font: 400 1.05rem/1.3 var(--sans); }
-  .chip input:checked + span { background: #fff; color: #04152a; border-color: #fff; font-weight: 600; }
-  .chip input:focus-visible + span { outline: 3px solid var(--foco); outline-offset: 3px; }
-  .consent { display: flex; gap: .8rem; align-items: flex-start; font: 400 1rem/1.5 var(--serif); margin: 1.8rem 0 1.6rem; }
-  .consent input { width: 1.4rem; height: 1.4rem; margin-top: .2rem; flex: none; accent-color: var(--rojo); }
-  .err { color: #ffb4a8; font: 600 1rem/1.4 var(--sans); margin: .5rem 0 0; }
-  .hp { position: absolute; left: -9999px; }
-  #estado { margin-top: 1rem; font: 600 1.05rem/1.4 var(--sans); }
-  #estado.error { color: #ffb4a8; }
-  #listo { border-left: 4px solid var(--rojo); padding-left: 1.2rem; margin-top: 2rem; }
-  #listo h3 { margin-top: 0; }
+  /* ---------- video ---------- */
+  .video { position: relative; aspect-ratio: 16 / 9; background: #000; margin: 2rem 0 1rem; }
+  .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 
   footer p { font-size: .95rem; margin-bottom: .5rem; }
   noscript p { padding: 1rem; background: #fff; color: #111; }
 </style>
 </head>
 <body>
-<a class="skip" href="#menu">Saltar la animación</a>
+<a class="skip" href="#llamame">Saltar la animación</a>
 <button id="snd" class="snd" type="button" aria-pressed="false">Sonido apagado</button>
-<div id="gauge" aria-hidden="true"><div class="rule"></div><div class="mark"></div><span id="prof"><b id="n">0</b> / 237<small>llamadas atendidas</small></span></div>
+<div id="gauge" aria-hidden="true"><div class="rule"></div><div class="mark"></div><span id="prof"><b id="n">0</b> / 237<small>llamadas atendidas<br>en la jornada</small></span></div>
 
 <header id="intro" class="layer l0">
   <h1 class="sr">Llamada n.° 237</h1>
@@ -181,114 +187,14 @@
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
     Atender
   </button>
-  <noscript><p>Esta página necesita JavaScript para la animación, el mapa y el formulario. Llamada n.° 237, instalación sonora de Martín Fernández Navarro.</p></noscript>
+  <noscript><p>Esta página necesita JavaScript para la animación y el formulario. Llamada n.° 237, instalación sonora de Martín Fernández Navarro.</p></noscript>
 </header>
 
 <main>
-<section id="menu" class="layer l1" aria-labelledby="saludo-t">
-  <div class="wide">
-    <div id="saludo">
-      <p id="saludo-t" class="saludo-1" data-type>Hola. Gracias por comunicarte con Llamada n.° 237.</p>
-      <p class="saludo-2" data-type>Su llamada es importante para nosotros. Marcá una opción.</p>
-    </div>
-    <ol class="ivr" id="ivr">
-      <li><a href="#obra" data-k="1"><span class="d">1</span><span class="t">para conocer <b>la obra</b></span></a></li>
-      <li><a href="#anecdota" data-k="2"><span class="d">2</span><span class="t">para escuchar <b>la anécdota</b></span></a></li>
-      <li><a href="#mapa" data-k="3"><span class="d">3</span><span class="t">para ver <b>dónde atienden</b> los centros de llamadas</span></a></li>
-      <li><a href="#archivo" data-k="4"><span class="d">4</span><span class="t">para mirar <b>el archivo</b></span></a></li>
-      <li><a href="#escuchar" data-k="5"><span class="d">5</span><span class="t">para <b>escuchar</b> lo que suena adentro del agua</span></a></li>
-      <li><a href="#bitacora" data-k="6"><span class="d">6</span><span class="t">para seguir <b>el proceso</b></span></a></li>
-      <li><a href="#llamame" data-k="0"><span class="d">0</span><span class="t">para que <b>alguien te llame</b></span></a></li>
-    </ol>
-  </div>
-</section>
-
-<section id="obra" class="layer l2" aria-labelledby="obra-t">
+<section id="llamame" class="layer l1" aria-labelledby="ll-t">
   <div class="wrap">
-    <h2 id="obra-t">La obra</h2>
-    <p class="epigrafe">Un dispensador de agua de oficina, un parlante bajo el agua. Adentro, un murmullo de voces que no llega a ser palabra.</p>
-    <p>Una columna de agua, translúcida y alta, con un parlante sumergido. Desde abajo suben burbujas, como si algo reclamara ser escuchado y el agua se lo impidiera.</p>
-    <p>La pieza nace de una anécdota de centro de llamadas, pero no la cuenta. Trabaja con lo que queda cuando el cuidado se vuelve un costo prescindible.</p>
-    <h3>De dónde viene</h3>
-    <p>Llamada n.° 237 surge de un proceso de investigación de la maestría en Artes y Profesiones Artísticas del Círculo de Bellas Artes de Madrid. Ahí trabajé sobre el cuerpo en las lógicas del trabajo corporativo y de oficina, y sobre el cuerpo frente a las tecnologías digitales. De esa investigación deriva esta obra.</p>
-    <dl class="ficha">
-      <dt>Obra</dt><dd>Llamada n.° 237, instalación sonora, 2026</dd>
-      <dt>Autoría</dt><dd>Martín Fernández Navarro</dd>
-      <dt>Se presenta en</dt><dd>62.º Premio Nacional de Artes Visuales, Espacio de Arte Contemporáneo (EAC), Montevideo</dd>
-      <dt>Inauguración</dt><dd>26 de noviembre de 2026</dd>
-    </dl>
-  </div>
-</section>
-
-<section id="anecdota" class="layer l3" aria-labelledby="an-t">
-  <div class="wrap">
-    <h2 id="an-t">La anécdota</h2>
-    <p>En uno de los centros de llamadas donde trabajé, el agua del dispensador sabía distinto cada día. Ese sabor se volvió tema de conversación en los pasillos.</p>
-    <p>Después de meses de reclamos, un laboratorio la analizó. El filtro siempre había estado desconectado y, en el tanque de la azotea, había tres ratas muertas.</p>
-    <p>La obra parte de esa historia para hablar de algo que no lo es: un sistema que lo mide todo en rendimiento y deja el cuidado afuera de la cuenta.</p>
-    <p>El agua que llena la pieza la fui juntando de dispensers y botellones de personas que trabajan en centros de llamadas.</p>
-  </div>
-</section>
-
-<section id="mapa" class="layer l4" aria-labelledby="mapa-t">
-  <div class="wide">
-    <div class="wrap" style="padding:0">
-      <h2 id="mapa-t">Dónde atienden</h2>
-      <p>Cada punto es un centro de llamadas de Montevideo: una oficina donde, todos los días, alguien atiende la voz de otros.</p>
-    </div>
-    <div id="map" role="region" aria-label="Mapa de Montevideo con los centros de llamadas marcados"></div>
-    <p class="map-nota muted">Los puntos son aproximados y el mapa sigue en construcción. <span id="mapa-cuenta"></span></p>
-  </div>
-</section>
-
-<section id="archivo" class="layer l5" aria-labelledby="ar-t">
-  <div class="wide">
-    <div class="wrap" style="padding:0">
-      <h2 id="ar-t">Archivo</h2>
-      <p>Fotos de las oficinas donde trabajé y de obras anteriores. El archivo se va completando.</p>
-    </div>
-    <h3>Oficinas</h3>
-    <ul class="grid">
-      <li><figure><div class="ph"><img src="img/oficina-1.jpg" alt="" loading="lazy" onerror="this.remove()">Foto pendiente</div><figcaption>Puesto de trabajo</figcaption></figure></li>
-      <li><figure><div class="ph"><img src="img/oficina-2.jpg" alt="" loading="lazy" onerror="this.remove()">Foto pendiente</div><figcaption>Piso de atención</figcaption></figure></li>
-      <li><figure><div class="ph"><img src="img/oficina-3.jpg" alt="" loading="lazy" onerror="this.remove()">Foto pendiente</div><figcaption>El dispenser</figcaption></figure></li>
-      <li><figure><div class="ph"><img src="img/oficina-4.jpg" alt="" loading="lazy" onerror="this.remove()">Foto pendiente</div><figcaption>Auriculares y pantallas</figcaption></figure></li>
-    </ul>
-    <h3>Trabajos anteriores</h3>
-    <ul class="grid">
-      <li><figure><div class="ph"><img src="img/narciso.jpg" alt="" loading="lazy" onerror="this.remove()">Foto pendiente</div><figcaption>Narciso, videoperformance sobre pantallas e imagen de uno mismo</figcaption></figure></li>
-      <li><figure><div class="ph"><img src="img/deposito-cero.jpg" alt="" loading="lazy" onerror="this.remove()">Foto pendiente</div><figcaption>Depósito Cero, video sobre cuerpos de agua y superficies reflejantes</figcaption></figure></li>
-      <li><figure><div class="ph"><img src="img/magritte-tv.jpg" alt="" loading="lazy" onerror="this.remove()">Foto pendiente</div><figcaption>Magritte TV, performance</figcaption></figure></li>
-    </ul>
-    <p class="muted">Más trabajos en <a href="https://martinfernandeznavarro.github.io">martinfernandeznavarro.github.io</a>.</p>
-  </div>
-</section>
-
-<section id="escuchar" class="layer l6" aria-labelledby="es-t">
-  <div class="wrap">
-    <h2 id="es-t">Escuchar</h2>
-    <p>Un fragmento de lo que suena adentro del agua. Mejor con auriculares.</p>
-    <audio id="aud" controls preload="none"><source src="audio/fragmento.mp3" type="audio/mpeg">Tu navegador no puede reproducir audio.</audio>
-    <p id="aud-nota" class="muted" hidden>El fragmento se publica con la inauguración.</p>
-  </div>
-</section>
-
-<section id="bitacora" class="layer l7" aria-labelledby="bi-t">
-  <div class="wrap">
-    <h2 id="bi-t">Bitácora</h2>
-    <ol class="bit">
-      <li><time datetime="2026-10-19">19 de octubre</time><p>Primeras pruebas con bidones de agua de 20 litros. El plástico se resiste a la deformación y el calor deja apenas una mancha.</p></li>
-      <li><time datetime="2026-10-21">21 de octubre</time><p>Llega la selección en el Premio Nacional y empieza la producción de la obra.</p></li>
-      <li><time datetime="2026-11-16">16 de noviembre</time><p>Empiezo a juntar agua de dispensers y botellones de personas que trabajan en centros de llamadas.</p></li>
-      <li><time datetime="2026-11-26">26 de noviembre</time><p>Inauguración en el EAC.</p></li>
-    </ol>
-  </div>
-</section>
-
-<section id="llamame" class="layer l8" aria-labelledby="ll-t">
-  <div class="wrap">
-    <h2 id="ll-t">Que alguien te llame</h2>
-    <p>Dejá tu número de WhatsApp. En las próximas 48 horas alguien te va a llamar para contarte de qué va la obra. Va a ser un número que no conocés.</p>
+    <h2 id="ll-t">Te llamamos para contarte de la pieza</h2>
+    <p>Dejá tu número de WhatsApp y un operador te va a llamar a la brevedad para explicarte la obra. Va a ser un número que no conocés: atendé.</p>
 
     <form id="form-llamada" novalidate>
       <p class="hp" aria-hidden="true"><label>No completar este campo<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></p>
@@ -301,18 +207,6 @@
       <p id="tel-ayuda" class="ayuda">Si el número no es de Uruguay, empezalo con el código de país, por ejemplo +54.</p>
       <p id="err-tel" class="err" hidden></p>
 
-      <fieldset aria-describedby="err-franja">
-        <legend>¿Cuándo te llamamos?</legend>
-        <div class="chips">
-          <label class="chip"><input type="checkbox" name="franja" value="manana"><span>Mañana (8 a 12)</span></label>
-          <label class="chip"><input type="checkbox" name="franja" value="mediodia"><span>Mediodía (12 a 14)</span></label>
-          <label class="chip"><input type="checkbox" name="franja" value="tarde"><span>Tarde (14 a 19)</span></label>
-          <label class="chip"><input type="checkbox" name="franja" value="noche"><span>Noche (19 a 22)</span></label>
-          <label class="chip"><input type="checkbox" name="franja" value="cualquiera"><span>Cualquier momento, las 24 horas</span></label>
-        </div>
-        <p id="err-franja" class="err" hidden></p>
-      </fieldset>
-
       <label class="consent" for="ok"><input id="ok" type="checkbox" required aria-describedby="err-ok"><span>Acepto que usen mi número solo para esta llamada.</span></label>
       <p id="err-ok" class="err" hidden></p>
 
@@ -322,7 +216,131 @@
 
     <div id="listo" tabindex="-1" hidden>
       <h3>Pedido recibido</h3>
-      <p>Alguien te va a llamar en las próximas 48 horas, dentro de la franja que elegiste. Atendé el número desconocido: es esta llamada.</p>
+      <p>Un operador te va a llamar a la brevedad para explicarte la obra. Atendé el número desconocido: es esta llamada.</p>
+      <p><a class="btn ghost" href="#menu">Mientras esperás, marcá una opción</a></p>
+    </div>
+  </div>
+</section>
+
+<section id="menu" class="layer l2" aria-labelledby="saludo-t">
+  <div class="wide">
+    <div id="saludo">
+      <p id="saludo-t" class="saludo-1" data-type>Hola. Gracias por comunicarte con Llamada n.° 237.</p>
+      <p class="saludo-2" data-type>Su llamada es importante para nosotros. Mientras esperás, marcá una opción.</p>
+    </div>
+    <ol class="ivr" id="ivr">
+      <li><a href="#anecdota" data-k="1"><span class="d">1</span><span class="t">para conocer <b>la anécdota</b></span></a></li>
+      <li><a href="#obra" data-k="2"><span class="d">2</span><span class="t">para conocer <b>la obra</b></span></a></li>
+      <li><a href="#archivo" data-k="3"><span class="d">3</span><span class="t">para ver <b>los renders previos</b> de la pieza</span></a></li>
+      <li><a href="#tesis" data-k="4"><span class="d">4</span><span class="t">para hojear <b>la tesis</b> de donde sale todo</span></a></li>
+      <li><a href="#cubiculos" data-k="5"><span class="d">5</span><span class="t">para ver <b>Cubículos</b>, el corto</span></a></li>
+      <li><a href="#llamame" data-k="0"><span class="d">0</span><span class="t">para hablar con <b>un operador</b></span></a></li>
+    </ol>
+  </div>
+</section>
+
+<section id="anecdota" class="layer l3" aria-labelledby="an-t">
+  <div class="wrap">
+    <h2 id="an-t">La anécdota</h2>
+    <p>En uno de los call centers donde trabajé, el agua del dispensador sabía todos los días diferente, como esos <em>souvenirs</em> que uno trae de la playa que cambian de color según el día. El sabor se volvió parte del <em>small talk</em> cotidiano.</p>
+    <blockquote class="dialogo">
+      <p>— Buen día, ¿cómo está el agua hoy?</p>
+      <p>— Hoy tiene gusto a plástico, como a guante de lavar platos.</p>
+    </blockquote>
+    <p>Después de meses de reclamos frustrados, el sindicato (doce personas, que pagaban cincuenta pesos por mes) consiguió que un laboratorio analizara el agua. El diagnóstico: el filtro siempre estuvo desconectado, el agua no era potable, y en el tanque de la azotea había tres ratas muertas.</p>
+  </div>
+</section>
+
+<section id="obra" class="layer l4" aria-labelledby="obra-t">
+  <div class="wrap">
+    <h2 id="obra-t">La obra</h2>
+    <p>Llamada n.° 237 parte de esa anécdota para hablar de algo que no es anecdótico: la precariedad laboral, la explotación descarnada, las lógicas de productividad llevadas al punto en que doscientas personas por turno terminan bebiendo agua con ratas sin saberlo. No es un accidente, es el resultado lógico de un sistema que mide todo en rendimiento y vuelve el cuidado un costo prescindible.</p>
+    <p>Dentro del bidón, un parlante sumergido reproduce un paisaje sonoro construido con grabaciones reales del call center: el murmullo de doscientas personas, texturas del trabajo repetitivo, fragmentos de discursos sindicales. Todo distorsionado por el agua, la voz acallada, el reclamo ahogado.</p>
+    <h3>De dónde viene</h3>
+    <p>Llamada n.° 237 surge de un proceso de investigación de la maestría en Artes y Profesiones Artísticas del Círculo de Bellas Artes de Madrid. Ahí trabajé sobre el cuerpo en las lógicas del trabajo corporativo y de oficina, y sobre el cuerpo frente a las tecnologías digitales. De esa investigación deriva esta obra.</p>
+    <dl class="ficha">
+      <dt>Obra</dt><dd>Llamada n.° 237, instalación sonora, 2026</dd>
+      <dt>Autoría</dt><dd>Martín Fernández Navarro</dd>
+      <dt>Se presenta en</dt><dd>62.º Premio Nacional de Artes Visuales, Espacio de Arte Contemporáneo (EAC), Montevideo</dd>
+      <dt>Inauguración</dt><dd>26 de noviembre de 2026</dd>
+    </dl>
+  </div>
+</section>
+
+<section id="archivo" class="layer l5" aria-labelledby="ar-t">
+  <div class="wide">
+    <div class="wrap" style="padding:0">
+      <h2 id="ar-t">Archivo</h2>
+      <p>Así se imaginó la pieza antes de construirla: renders de exploración, hechos con inteligencia artificial, para probar cómo se vería y se sentiría el dispensador en distintos lugares. No son registro de la obra.</p>
+    </div>
+    <ul class="renders" id="renders">
+      <li><figure><button class="zoom" type="button" data-full="img/renders/render-1.jpg" data-cap="Render previo: el dispensador al fondo del pasillo de un call center." aria-label="Ampliar: el dispensador al fondo del pasillo de un call center"><img src="img/renders/render-1.jpg" alt="" width="1389" height="1132" loading="lazy" decoding="async"></button><figcaption>Render previo. El dispensador al fondo del pasillo de un call center.</figcaption></figure></li>
+      <li><figure><button class="zoom" type="button" data-full="img/renders/render-2.jpg" data-cap="Render previo: detalle del parlante sumergido en el agua." aria-label="Ampliar: detalle del parlante sumergido en el agua"><img src="img/renders/render-2.jpg" alt="" width="1159" height="1358" loading="lazy" decoding="async"></button><figcaption>Render previo. Detalle del parlante sumergido en el agua.</figcaption></figure></li>
+      <li><figure><button class="zoom" type="button" data-full="img/renders/render-3.jpg" data-cap="Render previo: el dispensador en una oficina de planta abierta." aria-label="Ampliar: el dispensador en una oficina de planta abierta"><img src="img/renders/render-3.jpg" alt="" width="1024" height="1536" loading="lazy" decoding="async"></button><figcaption>Render previo. En una oficina de planta abierta.</figcaption></figure></li>
+      <li><figure><button class="zoom" type="button" data-full="img/renders/render-4.jpg" data-cap="Render previo: la pieza en una sala de exhibición, con un espectador." aria-label="Ampliar: la pieza en una sala de exhibición"><img src="img/renders/render-4.jpg" alt="" width="1024" height="1536" loading="lazy" decoding="async"></button><figcaption>Render previo. En una sala de exhibición.</figcaption></figure></li>
+      <li><figure><button class="zoom" type="button" data-full="img/renders/render-5.jpg" data-cap="Render previo: la pieza en sala, con vasos descartables en el piso." aria-label="Ampliar: la pieza en sala con vasos descartables en el piso"><img src="img/renders/render-5.jpg" alt="" width="1122" height="1402" loading="lazy" decoding="async"></button><figcaption>Render previo. Con vasos descartables en el piso.</figcaption></figure></li>
+      <li><figure><button class="zoom" type="button" data-full="img/renders/render-6.jpg" data-cap="Exploración visual del concepto: el dispensador inclinado sobre una cuña de madera roja." aria-label="Ampliar: el dispensador inclinado sobre una cuña de madera roja"><img src="img/renders/render-6.jpg" alt="" width="1095" height="782" loading="lazy" decoding="async"></button><figcaption>Exploración visual. El dispensador inclinado sobre una cuña de madera roja.</figcaption></figure></li>
+    </ul>
+  </div>
+</section>
+
+<section id="tesis" class="layer l6" aria-labelledby="te-t">
+  <div class="wide">
+    <div class="wrap" style="padding:0">
+      <h2 id="te-t">Recursos Humanos</h2>
+      <p>Mi tesis de la maestría en Artes y Profesiones Artísticas, <em>Recursos Humanos</em> (2025), realizada con la mentoría de la artista Aitana Cordero. Estas son algunas de sus páginas, las que sirvieron de inspiración y de punto de partida para esta pieza.</p>
+    </div>
+    <ul class="saltos" id="saltos" aria-label="Ir a una parte de la tesis">
+      <li><button class="btn ghost" type="button" data-i="0">Espacio</button></li>
+      <li><button class="btn ghost" type="button" data-i="7">Objetos</button></li>
+      <li><button class="btn ghost" type="button" data-i="13">Dispensador de agua</button></li>
+      <li><button class="btn ghost" type="button" data-i="18">Cuerpo</button></li>
+    </ul>
+    <div class="slider" role="region" aria-roledescription="carrusel" aria-label="Páginas de la tesis Recursos Humanos">
+      <div class="track" id="track" tabindex="0">
+        <figure class="slide" role="group" aria-roledescription="página" aria-label="Página 1 de 20"><button class="zoom" type="button" data-full="img/tesis/p-01.jpg" data-cap="Espacio. Apertura del primer capítulo." aria-label="Ampliar la página 1: Espacio. Apertura del primer capítulo."><img src="img/tesis/p-01.jpg" alt="" width="1806" height="1287" loading="lazy" decoding="async"></button><figcaption>Espacio. Apertura del primer capítulo.</figcaption></figure>
+        <figure class="slide" role="group" aria-roledescription="página" aria-label="Página 2 de 20"><button class="zoom" type="button" data-full="img/tesis/p-02.jpg" data-cap="Espacios, modelos de oficina: Open Plan vs Action Plan (pp. 72–73)." aria-label="Ampliar la página 2: Espacios, modelos de oficina: Open Plan vs Action Plan (pp. 72–73)."><img src="img/tesis/p-02.jpg" alt="" width="1806" height="1287" loading="lazy" decoding="async"></button><figcaption>Espacios, modelos de oficina: Open Plan vs Action Plan (pp. 72–73).</figcaption></figure>
+        <figure class="slide" role="group" aria-roledescription="página" aria-label="Página 3 de 20"><button class="zoom" type="button" data-full="img/tesis/p-03.jpg" data-cap="Espacios, modelos de oficina: del paisaje de oficina al cubículo (pp. 74–75)." aria-label="Ampliar la página 3: Espacios, modelos de oficina: del paisaje de oficina al cubículo (pp. 74–75)."><img src="img/tesis/p-03.jpg" alt="" width="1806" height="1287" loading="lazy" decoding="async"></button><figcaption>Espacios, modelos de oficina: del paisaje de oficina al cubículo (pp. 74–75).</figcaption></figure>
+        <figure class="slide" role="group" aria-roledescription="página" aria-label="Página 4 de 20"><button class="zoom" type="button" data-full="img/tesis/p-04.jpg" data-cap="Espacios, modelos de oficina: fotograma de Office Space (pp. 76–77)." aria-label="Ampliar la página 4: Espacios, modelos de oficina: fotograma de Office Space (pp. 76–77)."><img src="img/tesis/p-04.jpg" alt="" width="1806" height="1287" loading="lazy" decoding="async"></button><figcaption>Espacios, modelos de oficina: fotograma de Office Space (pp. 76–77).</figcaption></figure>
+        <figure class="slide" role="group" aria-roledescription="página" aria-label="Página 5 de 20"><button class="zoom" type="button" data-full="img/tesis/p-05.jpg" data-cap="Espacios, archivo personal de espacios de trabajo (pp. 78–79)." aria-label="Ampliar la página 5: Espacios, archivo personal de espacios de trabajo (pp. 78–79)."><img src="img/tesis/p-05.jpg" alt="" width="1806" height="1287" loading="lazy" decoding="async"></button><figcaption>Espacios, archivo personal de espacios de trabajo (pp. 78–79).</figcaption></figure>
+        <figure class="slide" role="group" aria-roledescription="página" aria-label="Página 6 de 20"><button class="zoom" type="button" data-full="img/tesis/p-06.jpg" data-cap="Espacios, archivo personal: fotos de puestos de trabajo (pp. 80–81)." aria-label="Ampliar la página 6: Espacios, archivo personal: fotos de puestos de trabajo (pp. 80–81)."><img src="img/tesis/p-06.jpg" alt="" width="1806" height="1287" loading="lazy" decoding="async"></button><figcaption>Espacios, archivo personal: fotos de puestos de trabajo (pp. 80–81).</figcaption></figure>
+        <figure class="slide" role="group" aria-roledescription="página" aria-label="Página 7 de 20"><button class="zoom" type="button" data-full="img/tesis/p-07.jpg" data-cap="Espacios, archivo personal: oficinas open plan, cocina y escritorios (pp. 82–83)." aria-label="Ampliar la página 7: Espacios, archivo personal: oficinas open plan, cocina y escritorios (pp. 82–83)."><img src="img/tesis/p-07.jpg" alt="" width="1806" height="1287" loading="lazy" decoding="async"></button><figcaption>Espacios, archivo personal: oficinas open plan, cocina y escritorios (pp. 82–83).</figcaption></figure>
+        <figure class="slide" role="group" aria-roledescription="página" aria-label="Página 8 de 20"><button class="zoom" type="button" data-full="img/tesis/p-08.jpg" data-cap="Objetos. Apertura del segundo capítulo." aria-label="Ampliar la página 8: Objetos. Apertura del segundo capítulo."><img src="img/tesis/p-08.jpg" alt="" width="1806" height="1287" loading="lazy" decoding="async"></button><figcaption>Objetos. Apertura del segundo capítulo.</figcaption></figure>
+        <figure class="slide" role="group" aria-roledescription="página" aria-label="Página 9 de 20"><button class="zoom" type="button" data-full="img/tesis/p-09.jpg" data-cap="Glosario personal de objetos oficinescos: vaso de plástico o papel (pp. 138–139)." aria-label="Ampliar la página 9: Glosario personal de objetos oficinescos: vaso de plástico o papel (pp. 138–139)."><img src="img/tesis/p-09.jpg" alt="" width="1806" height="1287" loading="lazy" decoding="async"></button><figcaption>Glosario personal de objetos oficinescos: vaso de plástico o papel (pp. 138–139).</figcaption></figure>
+        <figure class="slide" role="group" aria-roledescription="página" aria-label="Página 10 de 20"><button class="zoom" type="button" data-full="img/tesis/p-10.jpg" data-cap="Glosario personal de objetos oficinescos: silla de oficina (pp. 140–141)." aria-label="Ampliar la página 10: Glosario personal de objetos oficinescos: silla de oficina (pp. 140–141)."><img src="img/tesis/p-10.jpg" alt="" width="1806" height="1287" loading="lazy" decoding="async"></button><figcaption>Glosario personal de objetos oficinescos: silla de oficina (pp. 140–141).</figcaption></figure>
+        <figure class="slide" role="group" aria-roledescription="página" aria-label="Página 11 de 20"><button class="zoom" type="button" data-full="img/tesis/p-11.jpg" data-cap="Glosario personal de objetos oficinescos: guardia de seguridad (pp. 142–143)." aria-label="Ampliar la página 11: Glosario personal de objetos oficinescos: guardia de seguridad (pp. 142–143)."><img src="img/tesis/p-11.jpg" alt="" width="1806" height="1287" loading="lazy" decoding="async"></button><figcaption>Glosario personal de objetos oficinescos: guardia de seguridad (pp. 142–143).</figcaption></figure>
+        <figure class="slide" role="group" aria-roledescription="página" aria-label="Página 12 de 20"><button class="zoom" type="button" data-full="img/tesis/p-12.jpg" data-cap="Glosario personal de objetos oficinescos: cartelera de anuncios (pp. 144–145)." aria-label="Ampliar la página 12: Glosario personal de objetos oficinescos: cartelera de anuncios (pp. 144–145)."><img src="img/tesis/p-12.jpg" alt="" width="1806" height="1287" loading="lazy" decoding="async"></button><figcaption>Glosario personal de objetos oficinescos: cartelera de anuncios (pp. 144–145).</figcaption></figure>
+        <figure class="slide" role="group" aria-roledescription="página" aria-label="Página 13 de 20"><button class="zoom" type="button" data-full="img/tesis/p-13.jpg" data-cap="Catálogo de artículos imaginados. Apertura del apartado." aria-label="Ampliar la página 13: Catálogo de artículos imaginados. Apertura del apartado."><img src="img/tesis/p-13.jpg" alt="" width="1806" height="1287" loading="lazy" decoding="async"></button><figcaption>Catálogo de artículos imaginados. Apertura del apartado.</figcaption></figure>
+        <figure class="slide" role="group" aria-roledescription="página" aria-label="Página 14 de 20"><button class="zoom" type="button" data-full="img/tesis/p-14.jpg" data-cap="Catálogo de artículos imaginados: Dispensador de agua, la anécdota (pp. 148–149)." aria-label="Ampliar la página 14: Catálogo de artículos imaginados: Dispensador de agua, la anécdota (pp. 148–149)."><img src="img/tesis/p-14.jpg" alt="" width="1806" height="1287" loading="lazy" decoding="async"></button><figcaption>Catálogo de artículos imaginados: Dispensador de agua, la anécdota (pp. 148–149).</figcaption></figure>
+        <figure class="slide" role="group" aria-roledescription="página" aria-label="Página 15 de 20"><button class="zoom" type="button" data-full="img/tesis/p-15.jpg" data-cap="Catálogo de artículos imaginados: ficha de la obra y discursos preseleccionados (pp. 150–151)." aria-label="Ampliar la página 15: Catálogo de artículos imaginados: ficha de la obra y discursos preseleccionados (pp. 150–151)."><img src="img/tesis/p-15.jpg" alt="" width="1806" height="1287" loading="lazy" decoding="async"></button><figcaption>Catálogo de artículos imaginados: ficha de la obra y discursos preseleccionados (pp. 150–151).</figcaption></figure>
+        <figure class="slide" role="group" aria-roledescription="página" aria-label="Página 16 de 20"><button class="zoom" type="button" data-full="img/tesis/p-16.jpg" data-cap="Catálogo de artículos imaginados: exploración visual del concepto, el dispensador sobre una cuña." aria-label="Ampliar la página 16: Catálogo de artículos imaginados: exploración visual del concepto, el dispensador sobre una cuña."><img src="img/tesis/p-16.jpg" alt="" width="1806" height="1287" loading="lazy" decoding="async"></button><figcaption>Catálogo de artículos imaginados: exploración visual del concepto, el dispensador sobre una cuña.</figcaption></figure>
+        <figure class="slide" role="group" aria-roledescription="página" aria-label="Página 17 de 20"><button class="zoom" type="button" data-full="img/tesis/p-17.jpg" data-cap="Lista de lo que se compró o gestionó para la investigación (pp. 264–265)." aria-label="Ampliar la página 17: Lista de lo que se compró o gestionó para la investigación (pp. 264–265)."><img src="img/tesis/p-17.jpg" alt="" width="1806" height="1287" loading="lazy" decoding="async"></button><figcaption>Lista de lo que se compró o gestionó para la investigación (pp. 264–265).</figcaption></figure>
+        <figure class="slide" role="group" aria-roledescription="página" aria-label="Página 18 de 20"><button class="zoom" type="button" data-full="img/tesis/p-18.jpg" data-cap="Texto final de la tesis (pp. 266–267)." aria-label="Ampliar la página 18: Texto final de la tesis (pp. 266–267)."><img src="img/tesis/p-18.jpg" alt="" width="1806" height="1287" loading="lazy" decoding="async"></button><figcaption>Texto final de la tesis (pp. 266–267).</figcaption></figure>
+        <figure class="slide" role="group" aria-roledescription="página" aria-label="Página 19 de 20"><button class="zoom" type="button" data-full="img/tesis/p-19.jpg" data-cap="Cuerpo, investigación corporal: bocetos y pruebas (p. 236)." aria-label="Ampliar la página 19: Cuerpo, investigación corporal: bocetos y pruebas (p. 236)."><img src="img/tesis/p-19.jpg" alt="" width="1806" height="1287" loading="lazy" decoding="async"></button><figcaption>Cuerpo, investigación corporal: bocetos y pruebas (p. 236).</figcaption></figure>
+        <figure class="slide" role="group" aria-roledescription="página" aria-label="Página 20 de 20"><button class="zoom" type="button" data-full="img/tesis/p-20.jpg" data-cap="Cuerpo, investigación corporal: retratos con tubo de luz (pp. 226–227)." aria-label="Ampliar la página 20: Cuerpo, investigación corporal: retratos con tubo de luz (pp. 226–227)."><img src="img/tesis/p-20.jpg" alt="" width="1806" height="1287" loading="lazy" decoding="async"></button><figcaption>Cuerpo, investigación corporal: retratos con tubo de luz (pp. 226–227).</figcaption></figure>
+      </div>
+      <div class="ctrl">
+        <button id="prev" class="btn ghost" type="button" aria-label="Página anterior">Anterior</button>
+        <span id="pg" aria-live="polite">1 de 20</span>
+        <button id="next" class="btn ghost" type="button" aria-label="Página siguiente">Siguiente</button>
+      </div>
+    </div>
+    <p class="muted" style="margin-top:1.2rem">Tocá una página para verla más grande. Con el teclado, usá las flechas.</p>
+  </div>
+</section>
+
+<section id="cubiculos" class="layer l7" aria-labelledby="cu-t">
+  <div class="wide">
+    <div class="wrap" style="padding:0">
+      <h2 id="cu-t">Cubículos</h2>
+      <p>Cortometraje de fin de carrera de cine. Guion y dirección: Martín Fernández Navarro.</p>
+    </div>
+    <div class="video">
+      <iframe src="https://www.youtube-nocookie.com/embed/K62AYbrLfWI?rel=0" title="Cubículos, cortometraje de Martín Fernández Navarro" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+    <div class="wrap" style="padding:0">
+      <p>Es un día más dentro del call center. Una tras otra, las llamadas son contestadas con total desgano y automatismo. Para Marcelo también es un día promedio: clientes que lo insultan, comisiones insignificantes y tiempos de descanso irrisorios. Después del sermón de la encargada sobre su pobre desempeño, Marcelo regresa, abrumado, a su cubículo. A partir de ese momento todo comienza a desmoronarse, y una voz familiar tratará de sacarlo de allí.</p>
+      <p class="muted"><a href="https://youtu.be/K62AYbrLfWI">Ver en YouTube</a></p>
     </div>
   </div>
 </section>
@@ -336,26 +354,25 @@
   </div>
 </footer>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<dialog id="lb" aria-label="Imagen ampliada">
+  <div id="lb-in">
+    <img id="lb-img" alt="">
+    <p id="lb-cap"></p>
+    <div id="lb-act">
+      <a id="lb-open" class="btn ghost" href="#" target="_blank" rel="noopener">Abrir en tamaño completo</a>
+      <button id="lb-close" class="btn ghost" type="button">Cerrar</button>
+    </div>
+  </div>
+</dialog>
+
 <script>
 (function () {
   'use strict';
 
   /* ===== CONFIGURACIÓN ===== */
-  // Pegá acá la dirección de tu formulario de Formspree, por ejemplo: https://formspree.io/f/abcdwxyz
-  var FORM_ENDPOINT = '';
-
-  // Centros de llamadas. Ubicaciones aproximadas por barrio; reemplazar por las reales.
-  var CENTROS = [
-    { nombre: 'Ciudad Vieja', lat: -34.9060, lng: -56.2030 },
-    { nombre: 'Centro', lat: -34.9058, lng: -56.1880 },
-    { nombre: 'Cordón', lat: -34.9030, lng: -56.1770 },
-    { nombre: 'Tres Cruces', lat: -34.8945, lng: -56.1665 },
-    { nombre: 'Aguada', lat: -34.8890, lng: -56.1940 },
-    { nombre: 'Parque Rodó', lat: -34.9140, lng: -56.1680 },
-    { nombre: 'Pocitos', lat: -34.9130, lng: -56.1500 },
-    { nombre: 'Buceo', lat: -34.8950, lng: -56.1340 }
-  ];
+  // Dirección donde se reciben los pedidos: Google Apps Script (https://script.google.com/macros/s/.../exec)
+  // o Formspree (https://formspree.io/f/abcdwxyz)
+  var FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxbUJOwN1Vllu-LyKqH-c0Psqp17ZSujnGBXejdecMQotFMMF128osyASzl1XQFCkP3Mw/exec';
   /* ========================= */
 
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -482,15 +499,17 @@
   }
   secuenciaInicial();
 
+  // Atender: primero va al formulario
   $('atender').addEventListener('click', async function () {
     atendida = true;
     $('led').classList.remove('on'); $('lcdbox').classList.remove('bl');
     lcd.ocultar2 = false; lcd.l1 = 'CONECTADO'; dibujar();
     tono([941, 1336], 140, 0.05);
     await sleep(reduce ? 0 : 900);
-    $('menu').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
-    $('menu').setAttribute('tabindex', '-1');
-    $('menu').focus({ preventScroll: true });
+    var f = $('llamame');
+    f.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+    f.setAttribute('tabindex', '-1');
+    f.focus({ preventScroll: true });
   });
 
   /* ---------- saludo tipeado y menú ---------- */
@@ -513,7 +532,7 @@
   else { new IntersectionObserver(function (e, o) { if (e[0].isIntersecting) { o.disconnect(); saludar(); } }, { threshold: 0.4 }).observe($('saludo')); }
 
   /* ---------- teclas del menú ---------- */
-  var DESTINO = { '1': 'obra', '2': 'anecdota', '3': 'mapa', '4': 'archivo', '5': 'escuchar', '6': 'bitacora', '0': 'llamame' };
+  var DESTINO = { '1': 'anecdota', '2': 'obra', '3': 'archivo', '4': 'tesis', '5': 'cubiculos', '0': 'llamame' };
   ivr.addEventListener('click', function (e) {
     var a = e.target.closest('a[data-k]'); if (a) tono(DTMF[a.getAttribute('data-k')], 160, 0.06);
   });
@@ -527,7 +546,7 @@
     }
   });
 
-  /* ---------- contador de llamadas atendidas (0 a 237 según el scroll) ---------- */
+  /* ---------- contador de llamadas atendidas en la jornada (0 a 237 según el scroll) ---------- */
   var marca = document.querySelector('#gauge .mark'), cuenta = $('n'), tick = false;
   function medir() {
     tick = false;
@@ -539,40 +558,48 @@
   window.addEventListener('scroll', function () { if (!tick) { tick = true; requestAnimationFrame(medir); } }, { passive: true });
   window.addEventListener('resize', medir); medir();
 
-  /* ---------- mapa ---------- */
-  (function () {
-    var cont = $('map');
-    if (!window.L) { cont.innerHTML = '<p class="mapa-falla">No se pudo cargar el mapa. Revisá tu conexión y recargá la página.</p>'; return; }
-    var map = L.map(cont, { scrollWheelZoom: false }).setView([-34.90, -56.17], 12);
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; OpenStreetMap &copy; CARTO', subdomains: 'abcd', maxZoom: 19
-    }).addTo(map);
-    CENTROS.forEach(function (c, i) {
-      var icon = L.divIcon({ className: '', html: '<span class="dot" style="animation-delay:' + (i * 0.45) + 's"></span>', iconSize: [14, 14], iconAnchor: [7, 7] });
-      L.marker([c.lat, c.lng], { icon: icon, title: c.nombre, alt: 'Centro de llamadas, zona ' + c.nombre })
-        .addTo(map).bindPopup('Centro de llamadas, zona ' + c.nombre);
-    });
-    $('mapa-cuenta').textContent = CENTROS.length + ' puntos marcados.';
-    cont.addEventListener('click', function () { map.scrollWheelZoom.enable(); });
-    cont.addEventListener('mouseleave', function () { map.scrollWheelZoom.disable(); });
-    setTimeout(function () { map.invalidateSize(); }, 300);
-  })();
+  /* ---------- lightbox ---------- */
+  var lb = $('lb');
+  function abrir(src, cap) {
+    $('lb-img').src = src; $('lb-img').alt = cap || '';
+    $('lb-cap').textContent = cap || '';
+    $('lb-open').href = src;
+    if (lb.showModal) lb.showModal(); else window.open(src, '_blank');
+  }
+  $('lb-close').addEventListener('click', function () { lb.close(); });
+  lb.addEventListener('click', function (e) { if (e.target === lb) lb.close(); });
+  lb.addEventListener('close', function () { $('lb-img').removeAttribute('src'); });
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('button.zoom'); if (!b) return;
+    abrir(b.getAttribute('data-full'), b.getAttribute('data-cap'));
+  });
 
-  /* ---------- audio: aviso si falta el archivo ---------- */
-  var src = document.querySelector('#aud source');
-  if (src) src.addEventListener('error', function () { $('aud-nota').hidden = false; $('aud').hidden = true; });
+  /* ---------- carrusel de la tesis ---------- */
+  (function () {
+    var track = $('track'), slides = track.children, n = slides.length;
+    var pg = $('pg'), prev = $('prev'), next = $('next'), saltos = $('saltos');
+    var tk = false;
+    function idx() { return Math.max(0, Math.min(n - 1, Math.round(track.scrollLeft / track.clientWidth))); }
+    function ir(i) { i = Math.max(0, Math.min(n - 1, i)); track.scrollTo({ left: i * track.clientWidth, behavior: reduce ? 'auto' : 'smooth' }); }
+    function actualizar() {
+      tk = false;
+      var i = idx();
+      pg.textContent = (i + 1) + ' de ' + n;
+      prev.disabled = i === 0; next.disabled = i === n - 1;
+      var botones = saltos.querySelectorAll('button'), actual = -1;
+      for (var k = 0; k < botones.length; k++) { if (+botones[k].getAttribute('data-i') <= i) actual = k; }
+      for (var j = 0; j < botones.length; j++) { if (j === actual) botones[j].setAttribute('aria-current', 'true'); else botones[j].removeAttribute('aria-current'); }
+    }
+    track.addEventListener('scroll', function () { if (!tk) { tk = true; requestAnimationFrame(actualizar); } }, { passive: true });
+    prev.addEventListener('click', function () { ir(idx() - 1); });
+    next.addEventListener('click', function () { ir(idx() + 1); });
+    saltos.addEventListener('click', function (e) { var b = e.target.closest('button[data-i]'); if (b) ir(+b.getAttribute('data-i')); });
+    window.addEventListener('resize', function () { track.scrollLeft = idx() * track.clientWidth; actualizar(); });
+    actualizar();
+  })();
 
   /* ---------- formulario ---------- */
   var form = $('form-llamada'), estado = $('estado');
-  var ETIQ = { manana: 'Mañana (8 a 12)', mediodia: 'Mediodía (12 a 14)', tarde: 'Tarde (14 a 19)', noche: 'Noche (19 a 22)', cualquiera: 'Cualquier momento (24 horas)' };
-
-  form.addEventListener('change', function (e) {
-    if (e.target.name !== 'franja') return;
-    var cualquiera = form.querySelector('input[value="cualquiera"]');
-    if (e.target === cualquiera && cualquiera.checked) {
-      form.querySelectorAll('input[name="franja"]').forEach(function (i) { if (i !== cualquiera) i.checked = false; });
-    } else if (e.target !== cualquiera && e.target.checked) { cualquiera.checked = false; }
-  });
 
   function error(id, msg) { var el = $(id); el.textContent = msg || ''; el.hidden = !msg; }
   function normalizar(raw) {
@@ -586,16 +613,14 @@
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
     estado.textContent = ''; estado.className = '';
-    ['err-tel', 'err-franja', 'err-ok'].forEach(function (i) { error(i, ''); });
+    ['err-tel', 'err-ok'].forEach(function (i) { error(i, ''); });
 
     if (form.elements._gotcha.value) { mostrarListo(); return; }   // robot
 
     var tel = form.elements.telefono.value.trim();
     var digitos = tel.replace(/\D/g, '');
-    var franjas = Array.prototype.slice.call(form.querySelectorAll('input[name="franja"]:checked')).map(function (i) { return i.value; });
     var primero = null;
     if (digitos.length < 8 || digitos.length > 15) { error('err-tel', 'Escribí un número de WhatsApp válido, con 8 a 15 dígitos.'); primero = primero || form.elements.telefono; }
-    if (!franjas.length) { error('err-franja', 'Elegí al menos una franja para que te llamemos.'); primero = primero || form.querySelector('input[name="franja"]'); }
     if (!$('ok').checked) { error('err-ok', 'Para que te llamemos, aceptá el uso del número.'); primero = primero || $('ok'); }
     if (primero) { primero.focus(); return; }
 
@@ -605,20 +630,22 @@
       return;
     }
 
-    var ahora = new Date();
     var datos = {
       nombre: form.elements.nombre.value.trim(),
       telefono: tel,
       telefono_whatsapp: normalizar(tel),
-      franjas: franjas.map(function (k) { return ETIQ[k]; }).join(', '),
-      pedido_el: ahora.toISOString(),
-      llamar_antes_de: new Date(ahora.getTime() + 48 * 3600 * 1000).toISOString(),
+      pedido_el: new Date().toISOString(),
       _subject: 'Nuevo pedido de llamada, Llamada n.° 237'
     };
     var btn = $('enviar'); btn.disabled = true; estado.textContent = 'Enviando…';
     try {
-      var r = await fetch(FORM_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(datos) });
-      if (!r.ok) throw new Error('http ' + r.status);
+      if (FORM_ENDPOINT.indexOf('script.google.com') !== -1) {
+        // Google Apps Script: pedido simple (sin preflight); la respuesta es opaca, se da por enviado si no hay error de red
+        await fetch(FORM_ENDPOINT, { method: 'POST', mode: 'no-cors', body: JSON.stringify(datos) });
+      } else {
+        var r = await fetch(FORM_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(datos) });
+        if (!r.ok) throw new Error('http ' + r.status);
+      }
       mostrarListo();
     } catch (err) {
       btn.disabled = false;
